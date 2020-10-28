@@ -34,10 +34,47 @@ $(document).ready(function() {
     //if you want the bot to start the conversation
     // action_trigger();
 
+setUserResponse("hi");
     setBotResponse([{"text":"welcome to chatbot","image":"https://i.imgur.com/TQ2o0ch.jpeg"},{"custom":{
         "payload":"chart",
         "data":{ "title": "Leaves", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "pie", "displayLegend": "true" }
     }}]);
+
+    setBotResponse([
+    {
+        "attachment":{   
+            "type": "video", 
+            "payload": { 
+            "title": "Link name", 
+            "src": "https://www.youtube.com/embed/odQu2QxHoZM" 
+                } 
+            },
+            "buttons":[
+                {
+                    "title":"Subscribe",
+                    "payload":"/subscribe"
+                },
+                {
+                    "title":"Click",
+                    "payload":"/clickednow"
+                }
+            ],
+            "custom":{
+                "payload": "pdf_attachment",
+                        "url":"https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwig7_CC_tbsAhXC_XMBHdHMCMgQFjABegQIBBAC&url=http%3A%2F%2Fwww.africau.edu%2Fimages%2Fdefault%2Fsample.pdf&usg=AOvVaw1Gt0y2rGQOt7itj5l55f3l",
+                        "title":"Sample-Pdf"
+                
+            },
+            "custom":{
+                "payload":"quickReplies",
+                "data":[
+                { "title":"chip1", "payload":"chip1_payload" },
+		  { "title":"chip2", "payload":"chip2_payload" },
+		   { "title":"chip3", "payload":"chip3_payload" } 
+                ]
+            }
+    }
+    ]);
 
 
 })
