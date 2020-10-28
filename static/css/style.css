@@ -28,7 +28,7 @@ body {
 .chat_header_title {
     color: white;
     float: left;
-    margin : 0.8% auto auto 3%;
+    margin : 1% auto auto 3%;
     font-size: 22px;
 }
 
@@ -58,8 +58,8 @@ div.chats::-webkit-scrollbar {
 
 .botAvatar {
     border-radius: 50%;
-    width: 1.5em;
-    height: 1.5em;
+    width: 2em;
+    height: 2em;
     float: left;
     margin-left: 5px;
     /* border: 2px solid  #2c53af ; */
@@ -76,7 +76,6 @@ div.chats::-webkit-scrollbar {
     border-radius: 1.5em;
     max-width: 60%;
     min-width: 25%;
-    font-size: 13px;
     word-wrap: break-word;
     border-radius: 0 20px 20px 20px;
 }
@@ -108,7 +107,6 @@ textarea-webkit-scrollbar {
     background: #5a17ee;
     color: white;
     margin-bottom: 0.15em;
-    font-size: 13px;
     max-width: 65%;
     min-width: 15%;
     border-radius: 20px 0px 20px 20px;
@@ -119,8 +117,8 @@ textarea-webkit-scrollbar {
     animation: animateElement linear 0.3s;
     animation-iteration-count: 1;
     border-radius: 50%;
-    width: 1.5em;
-    height: 1.5em;
+    width: 2em;
+    height: 2em;
     float: right;
     margin-right: 5px;
     /* border: 2px solid  #2c53af ; */
@@ -190,7 +188,7 @@ textarea-webkit-scrollbar {
     color: white;
     margin-right: 5px;
     float: right;
-    margin-top : 1%;
+    margin-top : 1.6%;
 }
 
 .dropdown-content li>a,
@@ -846,7 +844,6 @@ video:focus {
     .chat_header{
         border-radius: 10px 10px 0px 0px;
     }
-
 }
 @media(max-width: 940px){
     .widget{
@@ -861,6 +858,16 @@ video:focus {
         height: 100%;
     }
     
+}
+@media(max-width: 550px){
+    .userMsg .botMsg{
+        font-size:13px;
+    }
+}
+@media(min-width: 560px){
+    .userMsg .botMsg{
+        font-size:18px;
+    }
 }
 
 
