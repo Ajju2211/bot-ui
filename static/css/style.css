@@ -1,6 +1,6 @@
 body {
     font-family: 'Raleway', sans-serif;
-    background: url('../img/body.png') no-repeat center center fixed;
+    background: url('') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -9,20 +9,18 @@ body {
 
 .widget {
     display: none;
-    width: 350px;
-    right: 15px;
-    height: 500px;
+    width: 100%;
+    right: 10px;
     bottom: 5%;
     position: fixed;
     background: #f7f7f7;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.16), 0 0px 10px 0 #00000096;
+    
+    
 }
 
 .chat_header {
     height: 60px;
     background: rgb(90, 23, 238);
-    border-radius: 10px 10px 0px 0px;
     padding: 5px;
     font-size: 20px;
 }
@@ -31,7 +29,7 @@ body {
     color: white;
     float: left;
     margin-top: 3%;
-    margin-left: 35%;
+    margin-left: 5%;
 }
 
 .chats {
@@ -838,7 +836,27 @@ video:focus {
 .pdf_link a {
     color: #5a17ee;
 }
+@media(min-width:950px){
+    .widget{
+        width: 350px;
+        box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.16), 0 0px 10px 0 #00000096;
+        border-radius: 10px 10px 10px 10px;
+    }
+    .chat_header{
+        border-radius: 10px 10px 0px 0px;
+    }
 
+}
+@media(max-width: 940px){
+    .widget{
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0px;
+    }
+    
+}
 
 
 
