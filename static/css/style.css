@@ -28,7 +28,7 @@ body {
 .chat_header_title {
     color: white;
     float: left;
-    margin : 1% auto auto 3%;
+    margin : 1.5% auto auto 3%;
     font-size: 22px;
 }
 
@@ -68,10 +68,10 @@ div.chats::-webkit-scrollbar {
 .botMsg {
     float: left;
     margin-top: 5px;
-    background: white;
+    background: rgb(203, 205, 209);
     color: black;
     box-shadow: 2px 3px 9px 0px #9a82842e;
-    margin-left: 0.5em;
+    margin-left: 10px;
     padding: 10px;
     border-radius: 1.5em;
     max-width: 60%;
@@ -367,7 +367,7 @@ div.content_data::-webkit-scrollbar {
 /* css for single card */
 
 .singleCard {
-    padding-left: 10%;
+    padding-left: 32px;
     padding-right: 10px;
 }
 
@@ -375,11 +375,11 @@ div.content_data::-webkit-scrollbar {
 /* css for image card */
 
 .imgcard {
-    object-fit: cover;
-    width: 80%;
-    height: 50%;
-    border-radius: 10px;
-    margin-left: 1%;
+    width: 60%;
+    height: auto;
+    border-radius: 5px;
+    margin-left: 10px;
+    background-image: cover;
 }
 
 
@@ -620,6 +620,7 @@ div.content_data::-webkit-scrollbar {
     user-select: none;
     cursor: pointer;
     scroll-behavior: smooth;
+    grid-template-columns: 50%;
 }
 
 .quickReplies::-webkit-scrollbar {
@@ -665,11 +666,9 @@ div.content_data::-webkit-scrollbar {
 
 .chart-container {
     position: relative;
-    margin: auto;
-    height: 25vh;
-    width: 20vw;
+    margin-left: 40px;
+    height: auto;
     border-radius: 10px 10px 10px 10px;
-    margin-left: 5%;
     background: white;
     box-shadow: 2px 3px 9px 0px #9a82847a;
     margin-top: 5px;
@@ -792,9 +791,8 @@ video:focus {
     position: absolute;
     top: 0;
     left: 0;
-    width: 90%;
     height: 100%;
-    margin-left: 5%;
+    margin-left: 40px;
     border-radius: 10px;
     border-style: none;
 }
@@ -863,11 +861,33 @@ video:focus {
     .userMsg .botMsg{
         font-size:13px;
     }
+
+.chart-container,
+.video-container iframe,
+.video-container object,
+.video-container embed  {
+    width: 85%;
+}
 }
 @media(min-width: 560px){
     .userMsg .botMsg{
         font-size:18px;
     }
+    .chart-container,
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    width:89%;
+}
+}
+@media(min-width: 950px){
+
+    .chart-container,
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    width: 85%;
+}
 }
 
 
