@@ -594,19 +594,21 @@ Elements
 
 .simpleCardCounts {
     color:black;
-    top: 40%;
+    top: 45%;
     margin-left:4%;
     position: absolute;
 }
 
 .simpleCardAmount {
     color:black;
-    top: 60%;
+    top: 65%;
     margin-left:4%;
     position: absolute;
 }
 .countamount{
  font-weight: 700;
+ white-space: nowrap;
+ font-family: Georgia,serif;
 }
 
 
@@ -1038,7 +1040,12 @@ video:focus {
         min-width: 47%;
     }
 }
-
+@media(min-width: 950px){
+    
+    .simple_cards_scroller div.simple_carousel_cards {
+        min-width: 47%;
+    }
+}
 
 /* media queries
 */
