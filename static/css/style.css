@@ -594,14 +594,14 @@ Elements
 
 .simpleCardCounts {
     color:black;
-    top: 45%;
+    top: 40%;
     margin-left:4%;
     position: absolute;
 }
 
 .simpleCardAmount {
     color:black;
-    top: 65%;
+    top: 60%;
     margin-left:4%;
     position: absolute;
 }
@@ -1041,7 +1041,7 @@ video:focus {
     }
 }
 @media(min-width: 950px){
-    
+
     .simple_cards_scroller div.simple_carousel_cards {
         min-width: 47%;
     }

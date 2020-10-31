@@ -667,7 +667,7 @@ function createSimpleCardsCarousel(cardsData) {
                 </div>
                 <p>
                 <div><i class="fa-money-bill-wave"></i></div>
-                <span class="simpleCardCounts">Bill counts:<span class="countamount">${counts}</span></span>
+                <span class="simpleCardCounts"><i class="fa-money-bill-alt"></i>Bill counts:<span class="countamount">${counts}</span></span>
                 <span class="simpleCardAmount">Total amount:<span class="countamount">₹${totalAmount}</span></span>
                 </p>
                 </div>`;
