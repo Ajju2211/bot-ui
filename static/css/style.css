@@ -583,6 +583,25 @@ simple Cards
     border-radius: 10px;
 }
 
+
+/*
+Inside simple Card
+Elements
+*/
+
+.simpleCardCounts {
+    color:blue;
+    top: 40%;
+    position: absolute;
+}
+
+.simpleCardAmount {
+    color:blue;
+    top: 60%;
+    position: absolute;
+}
+
+
 @-webkit-keyframes fadeInLeft {
     from {
         opacity: 0;
