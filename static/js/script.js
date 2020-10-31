@@ -651,8 +651,8 @@ function createSimpleCardsCarousel(cardsData) {
                 <div class="simpleCardHeader"><span class="cardTitle" title="${title}">${title}</span>
                 </div>
                 <p>
-                <span class="simpleCardCounts">Bill counts ${counts}</span>
-                <span class="simpleCardAmount">Total amount${totalAmount}</span>
+                <span class="simpleCardCounts">Bill counts:<span class="countamount"> ${counts}</span></span>
+                <span class="simpleCardAmount">Total amount: <span class="countamount">${totalAmount}</span></span>
                 </p>
                 </div>`;
         cards += item;
