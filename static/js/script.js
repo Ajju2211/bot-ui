@@ -618,7 +618,7 @@ function showSimpleCardsCarousel(cardsToAdd) {
 
     scrollToBottomOfResults();
 
-    const card = document.querySelector("#paginated_simple_cards");
+    const card = document.querySelector("#paginated_cards");
     const card_scroller = card.querySelector(".simple_cards_scroller");
     var card_item_size = 225;
 
