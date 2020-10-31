@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+// In memory chart data
+// [{id:0,data:{}]
+var charts_data = [];
 
 //initialization
 $(document).ready(function() {
@@ -31,15 +34,27 @@ $(document).ready(function() {
     action_name = "action_greet_user";
     user_id = "userid_unique";
 
+
     //if you want the bot to start the conversation
     // action_trigger();
 
 setUserResponse("hi");
     setBotResponse([{"text":"welcome to chatbot","image":"https://i.imgur.com/TQ2o0ch.jpeg"},
-        {"image":"https://images2.minutemediacdn.com/image/upload/c_crop,h_1126,w_2000,x_0,y_181/f_auto,q_auto,w_1100/v1554932288/shape/mentalfloss/12531-istock-637790866.jpg"},{"custom":{
+        {"image":"https://images2.minutemediacdn.com/image/upload/c_crop,h_1126,w_2000,x_0,y_181/f_auto,q_auto,w_1100/v1554932288/shape/mentalfloss/12531-istock-637790866.jpg"},
+        {"custom":{
         "payload":"chart",
         "data":{ "title": "Leaves", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "bar", "displayLegend": "true" }
-    }}]);
+    }
+        }
+    ]);
+
+    setBotResponse([
+        {"custom":{
+        "payload":"chart",
+        "data":{ "title": "Leaves1", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "bar", "displayLegend": "true" }
+    }
+        }
+        ]);
 
     setBotResponse([
     {
@@ -807,16 +822,53 @@ function createCollapsible(data) {
 
 //====================================== creating Charts ======================================
 
+// function to get the current index of charts_data[]
+function getCurrentChartIndex(){
+    return charts_data.length -1;
+}
+
+// function to store the chart_data in the charts_data = []
+function setChartData(id,data){
+    charts_data.push({
+        "id": id,
+        "data": data
+    });
+}
+
+// function to get the charts_data by id , returns whole object
+function getChartData(id){
+    return charts_data.find(ele=> ele.id == id);
+}
+
 //function to create the charts & render it to the canvas
 function createChart(title, labels, backgroundColor, chartsData, chartType, displayLegend) {
 
     //create the ".chart-container" div that will render the charts in canvas as required by charts.js,
     // for more info. refer: https://www.chartjs.org/docs/latest/getting-started/usage.html
-    var html = '<div class="chart-container"> <span class="modal-trigger" id="expand" title="expand" href="#modal1"><i class="fa fa-external-link" aria-hidden="true"></i></span> <canvas id="chat-chart" ></canvas> </div> <div class="clearfix"></div>'
+    // making expand{id} as an unique id and chat-chart{id} ids for canvas
+
+    // creating unique id
+    let uniqueID = getCurrentChartIndex() +1 ;
+    let expandID = `expand`;
+    let canvasID = `chat-chart${uniqueID}`;
+    let chartData = {
+        "title":title,
+        "labels":labels,
+        "backgroundColor":backgroundColor,
+        "chartsData":chartsData,
+        "chartType":chartType,
+        "displayLegend":displayLegend
+    };
+    // Add to memory
+    setChartData(uniqueID,chartData);
+    let html = `<div class="chart-container"> <span class="modal-trigger" data-payload = '${JSON.stringify(chartData)}' id="${expandID}" title="${expandID}" href="#modal1">
+                <i class="fa fa-external-link" aria-hidden="true"></i></span>
+                <canvas id="${canvasID}" ></canvas>
+            </div> <div class="clearfix"></div>`;
     $(html).appendTo('.chats');
 
     //create the context that will draw the charts over the canvas in the ".chart-container" div
-    var ctx = $('#chat-chart');
+    var ctx = $(`#${canvasID}`);
 
     // Once you have the element or context, instantiate the chart-type by passing the configuration,
     //for more info. refer: https://www.chartjs.org/docs/latest/configuration/
@@ -863,11 +915,16 @@ function createChart(title, labels, backgroundColor, chartsData, chartType, disp
 }
 
 // on click of expand button, get the chart data from gloabl variable & render it to modal
-$(document).on("click", ".modal-trigger", function(data) {
-    console.log(data);
+
+$(document).on("click", ".modal-trigger", function() {
     //the parameters are declared gloabally while we get the charts data from rasa.
-    createChartinModal(title, labels, backgroundColor, chartsData,chartType, displayLegend)
-});
+    // let data = getChartData(i);
+    let payload = JSON.parse(this.getAttribute('data-payload'));
+    createChartinModal(payload.title, payload.labels, payload.backgroundColor, payload.chartsData,payload.chartType, payload.displayLegend)
+});    
+
+// for(let i=0;i<=getCurrentChartIndex();i++){
+
 
 //function to render the charts in the modal
 function createChartinModal(title, labels, backgroundColor, chartsData, chartType, displayLegend) {
