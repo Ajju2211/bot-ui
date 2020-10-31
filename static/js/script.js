@@ -61,21 +61,45 @@ setUserResponse("hi");
                 }
             ],
             "custom":{
-                "payload": "pdf_attachment",
-                        "url":"https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwig7_CC_tbsAhXC_XMBHdHMCMgQFjABegQIBBAC&url=http%3A%2F%2Fwww.africau.edu%2Fimages%2Fdefault%2Fsample.pdf&usg=AOvVaw1Gt0y2rGQOt7itj5l55f3l",
-                        "title":"Sample-Pdf"
-                
-            },
-            "custom":{
                 "payload":"quickReplies",
                 "data":[
                 { "title":"chip1", "payload":"chip1_payload" },
 		  { "title":"chip2", "payload":"chip2_payload" },
-		   { "title":"chip3", "payload":"chip3_payload" } 
+		   { "title":"chip3", "payload":"chip3_payload" } ,
+                           { "title":"chip1", "payload":"chip1_payload" },
+          { "title":"chip2", "payload":"chip2_payload" },
+           { "title":"chip3", "payload":"chip3_payload" } 
                 ]
             }
     }
     ]);
+    setBotResponse([{
+        "text":"Hi hhhh",
+        "image":"https://i.imgur.com/TQ2o0ch.jpeg"
+    }]);
+    setBotResponse([{
+        "text":"Hi hhhh",
+        "custom":{
+            "payload":"cardsCarousel",
+            "data":[
+            {
+                "name":"Dosa",
+                "ratings":"4.5",
+                "image":"https://www.cookwithmanali.com/wp-content/uploads/2020/05/Masala-Dosa-500x500.jpg"
+            },
+            {
+                "name":"Dosa",
+                "ratings":"4.5",
+                "image":"https://www.cookwithmanali.com/wp-content/uploads/2020/05/Masala-Dosa-500x500.jpg"
+            },
+            {
+                "name":"Dosa",
+                "ratings":"4.5",
+                "image":"https://sukhis.com/wp-content/uploads/2020/01/Dosa.jpg"
+            }
+            ]
+        }
+    }]);
 
 
 })
@@ -99,8 +123,9 @@ function restartConversation() {
 function action_trigger() {
 
     // send an event to the bot, so that bot can start the conversation by greeting the user
+    // https://frendy-rasa-bot-ilsxqqnpkq-uc.a.run.app/
     $.ajax({
-        url: `http://localhost:5005/conversations/${user_id}/execute`,
+        url: `https://frendy-rasa-bot-ilsxqqnpkq-uc.a.run.app/conversations/${user_id}/execute`,
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({ "name": action_name, "policy": "MappingPolicy", "confidence": "0.98" }),
@@ -199,7 +224,7 @@ function scrollToBottomOfResults() {
 function send(message) {
 
     $.ajax({
-        url: "http://localhost:5005/webhooks/rest/webhook",
+        url: "https://frendy-rasa-bot-ilsxqqnpkq-uc.a.run.app/webhooks/rest/webhook",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({ message: message, sender: user_id }),
@@ -259,6 +284,10 @@ function setBotResponse(response) {
                     $(BotResponse).appendTo(".chats").hide().fadeIn(1000);
                 }
 
+                //check if the response contains "buttons" 
+                if (response[i].hasOwnProperty("buttons")) {
+                    addSuggestion(response[i].buttons);
+                }
                 //check if the response contains "images"
                 if (response[i].hasOwnProperty("image")) {
                     var BotResponse = '<div class="singleCard">' + '<img class="imgcard" src="' + response[i].image + '">' + '</div><div class="clearfix">';
@@ -266,10 +295,7 @@ function setBotResponse(response) {
                 }
 
 
-                //check if the response contains "buttons" 
-                if (response[i].hasOwnProperty("buttons")) {
-                    addSuggestion(response[i].buttons);
-                }
+
 
                 //check if the response contains "attachment" 
                 if (response[i].hasOwnProperty("attachment")) {
@@ -415,10 +441,12 @@ function addSuggestion(textToAdd) {
     setTimeout(function() {
         var suggestions = textToAdd;
         var suggLength = textToAdd.length;
-        $(' <div class="singleCard"> <div class="suggestions"><div class="menu"></div></div></diV>').appendTo(".chats").hide().fadeIn(1000);
+        // Added clearfix --change
+        $(' <div class="singleCard"> <div class="suggestions"><div class="menu"></div></div></div><div class="clearfix"></div>').appendTo(".chats").hide().fadeIn(1000);
         // Loop through suggestions
         for (i = 0; i < suggLength; i++) {
             $('<div class="menuChips" data-payload=\'' + (suggestions[i].payload) + '\'>' + suggestions[i].title + "</div>").appendTo(".menu");
+
         }
         scrollToBottomOfResults();
     }, 1000);
@@ -508,8 +536,22 @@ function createCardsCarousel(cardsData) {
         title = cardsData[i].name;
         ratings = Math.round((cardsData[i].ratings / 5) * 100) + "%";
         data = cardsData[i];
-        item = '<div class="carousel_cards in-left">' + '<img class="cardBackgroundImage" src="' + cardsData[i].image + '"><div class="cardFooter">' + '<span class="cardTitle" title="' + title + '">' + title + "</span> " + '<div class="cardDescription">' + '<div class="stars-outer">' + '<div class="stars-inner" style="width:' + ratings + '" ></div>' + "</div>" + "</div>" + "</div>" + "</div>";
+        // sample format of the charts data:
+                       var chartData = { "title": "Leaves", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "pie", "displayLegend": "true" }
 
+                        //store the below parameters as global variable, 
+                        // so that it can be used while displaying the charts in modal.
+                     //   chartData = (response[i].custom.data)
+                        title = chartData.title;
+                        labels = chartData.labels;
+                        backgroundColor = chartData.backgroundColor;
+                        chartsData = chartData.chartsData;
+                        chartType = chartData.chartType;
+                        displayLegend = chartData.displayLegend;
+
+        //item = '<div class="carousel_cards in-left">' + '<img class="cardBackgroundImage" src="' + cardsData[i].image + '"><div class="cardFooter">' + '<span class="cardTitle" title="' + title + '">' + title + "</span> " + '<div class="cardDescription">' + '<div class="stars-outer">' + '<div class="stars-inner" style="width:' + ratings + '" ></div>' + "</div>" + "</div>" + "</div>" + "</div>";
+        chart=createChart(title, labels, backgroundColor, chartsData, chartType, displayLegend);
+        item = '<div class="carousel_cards in-left"> <div>'  +chart+ '</div> <div class="cardFooter">' + '<span class="cardTitle" title="' + title + '">' + title + "</span> " + '<div class="cardDescription">' + '<div class="stars-outer">' + '<div class="stars-inner" style="width:' + ratings + '" ></div>' + "</div>" + "</div>" + "</div>" + "</div>";
         cards += item;
     }
 
@@ -714,10 +756,10 @@ function createChart(title, labels, backgroundColor, chartsData, chartType, disp
 }
 
 // on click of expand button, get the chart data from gloabl variable & render it to modal
-$(document).on("click", "#expand", function() {
-
+$(document).on("click", ".modal-trigger", function(data) {
+    console.log(data);
     //the parameters are declared gloabally while we get the charts data from rasa.
-    createChartinModal(title, labels, backgroundColor, chartsData, chartType, displayLegend)
+    createChartinModal(title, labels, backgroundColor, chartsData,chartType, displayLegend)
 });
 
 //function to render the charts in the modal

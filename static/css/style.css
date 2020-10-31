@@ -142,6 +142,7 @@ textarea-webkit-scrollbar {
     width: 100%;
     padding: 5px;
     border-radius: 0px 0px 10px 10px;
+    margin-top: 1%;
 }
 
 #sendButton {
@@ -387,10 +388,10 @@ div.content_data::-webkit-scrollbar {
 
 .suggestions {
     padding: 5px;
-    width: 80%;
     border-radius: 10px;
     background: #ffffff;
     box-shadow: 2px 5px 5px 1px #dbdade;
+    margin-left: 5px;
 }
 
 .menuTitle {
@@ -401,6 +402,11 @@ div.content_data::-webkit-scrollbar {
 
 .menu {
     padding: 5px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 33% 33% 33%;
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
 }
 
 .menuChips {
@@ -409,7 +415,7 @@ div.content_data::-webkit-scrollbar {
     color: #fff;
     text-align: center;
     padding: 5px;
-    margin-bottom: 5px;
+  
     cursor: pointer;
     border-radius: 15px;
     font-size: 14px;
@@ -835,6 +841,7 @@ video:focus {
 }
 @media(min-width:950px){
     .widget{
+        height: 500px;
         width: 350px;
         box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.16), 0 0px 10px 0 #00000096;
         border-radius: 10px 10px 10px 10px;
@@ -853,10 +860,13 @@ video:focus {
     }
     
     .chats{
-        height: 100%;
+        height: auto;
+        max-height: 85%;
     }
     
 }
+/*
+*/
 @media(max-width: 550px){
     .userMsg .botMsg{
         font-size:13px;
@@ -865,7 +875,7 @@ video:focus {
 .chart-container,
 .video-container iframe,
 .video-container object,
-.video-container embed  {
+.video-container embed {
     width: 85%;
 }
 }
@@ -876,7 +886,8 @@ video:focus {
     .chart-container,
 .video-container iframe,
 .video-container object,
-.video-container embed {
+.video-container embed
+ {
     width:89%;
 }
 }
@@ -885,9 +896,20 @@ video:focus {
     .chart-container,
 .video-container iframe,
 .video-container object,
-.video-container embed {
+.video-container embed
+{
     width: 85%;
 }
+}
+@media(min-width: 550px){
+    .suggestions{
+        width: 95%;
+    }
+}
+@media(max-width: 549px){
+    .suggestions{
+        width: 97%;
+    }
 }
 
 
