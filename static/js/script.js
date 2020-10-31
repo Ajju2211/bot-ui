@@ -107,22 +107,22 @@ setUserResponse("hi");
                 "payload":"simpleCardsCarousel",
                 "data":[{
                 "name":"Shampoo",
-                "totalAmout": 2000.50,
+                "totalAmount": 2000.50,
                 "counts": 20
                 },
                 {
                 "name":"Shampoo",
-                "totalAmout": 2000.50,
+                "totalAmount": 2000.50,
                 "counts": 20
                 },
                 {
                 "name":"Shampoo",
-                "totalAmout": 2000.50,
+                "totalAmount": 2000.50,
                 "counts": 20
                 },
                 {
                 "name":"Shampoo",
-                "totalAmout": 2000.50,
+                "totalAmount": 2000.50,
                 "counts": 20
                 }
                 ]
@@ -641,34 +641,22 @@ function showSimpleCardsCarousel(cardsToAdd) {
 
 function createSimpleCardsCarousel(cardsData) {
 
-    var cards = "";
+    let cards = "";
 
     for (i = 0; i < cardsData.length; i++) {
-        title = cardsData[i].name;
-        data = cardsData[i];
-        // sample format of the charts data:
-                       // var chartData = { "title": "Leaves", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "pie", "displayLegend": "true" }
-
-                        //store the below parameters as global variable, 
-                        // so that it can be used while displaying the charts in modal.
-                     //   chartData = (response[i].custom.data) //no need
-                        // title = chartData.title;
-                        // labels = chartData.labels;
-                        // backgroundColor = chartData.backgroundColor;
-                        // chartsData = chartData.chartsData;
-                        // chartType = chartData.chartType;
-                        // displayLegend = chartData.displayLegend;
-
-        // item = '<div class="simple_carousel_cards in-left">' + '<img class="cardBackgroundImage" src="' + cardsData[i].image + '"><div class="cardFooter">' + '<span class="cardTitle" title="' + title + '">' + title + "</span> " + '<div class="cardDescription">' + '<div class="stars-outer">' + '<div class="stars-inner" style="width:' + ratings + '" ></div>' + "</div>" + "</div>" + "</div>" + "</div>";
+        let title = cardsData[i].name;
+        let counts = cardsData[i].counts;
+        let totalAmount = cardsData[i].totalAmount;
         item = `<div class="simple_carousel_cards in-left">
                 <div class="simpleCardHeader"><span class="cardTitle" title="${title}">${title}</span>
-                </div></div>`;
-        // chart=createChart(title, labels, backgroundColor, chartsData, chartType, displayLegend);
-        // item = '<div class="carousel_cards in-left"> <div>'  +chart+ '</div> <div class="cardFooter">' + '<span class="cardTitle" title="' + title + '">' + title + "</span> " + '<div class="cardDescription">' + '<div class="stars-outer">' + '<div class="stars-inner" style="width:' + ratings + '" ></div>' + "</div>" + "</div>" + "</div>" + "</div>";
+                </div>
+                <span>${counts}</span>
+                <span>${totalAmount}</span>
+                </div>`;
         cards += item;
     }
 
-    var cardContents = `<div id="paginated_cards" class="cards">
+    let cardContents = `<div id="paginated_cards" class="cards">
                          <div class="simple_cards_scroller">${cards}
                          <span class="arrow prev fa fa-chevron-circle-left "></span> 
                          <span class="arrow next fa fa-chevron-circle-right" ></span> 
