@@ -682,6 +682,85 @@ function createSimpleCardsCarousel(cardsData) {
 
     return cardContents;
 }
+
+
+// ===================================== graphCardCarousel =============================================
+
+function showGraphCardsCarousel(cardsToAdd) {
+    var cards = createSimpleCardsCarousel(cardsToAdd);
+
+    $(cards).appendTo(".chats").show();
+
+
+    if (cardsToAdd.length <= 2) {
+        $(".graph_cards_scroller>div.graph_carousel_cards:nth-of-type(" + i + ")").fadeIn(3000);
+    } else {
+        for (var i = 0; i < cardsToAdd.length; i++) {
+            $(".graph_cards_scroller>div.graph_carousel_cards:nth-of-type(" + i + ")").fadeIn(3000);
+        }
+        $(".cards .arrow.prev").fadeIn("3000");
+        $(".cards .arrow.next").fadeIn("3000");
+    }
+
+
+    scrollToBottomOfResults();
+
+    const card = document.querySelector("#paginated_cards");
+    const card_scroller = card.querySelector(".graph_cards_scroller");
+    var card_item_size = 225;
+
+    card.querySelector(".arrow.next").addEventListener("click", scrollToNextPage);
+    card.querySelector(".arrow.prev").addEventListener("click", scrollToPrevPage);
+
+
+    // For paginated scrolling, simply scroll the card one item in the given
+    // direction and let css scroll snaping handle the specific alignment.
+    function scrollToNextPage() {
+        card_scroller.scrollBy(card_item_size, 0);
+    }
+
+    function scrollToPrevPage() {
+        card_scroller.scrollBy(-card_item_size, 0);
+    }
+
+}
+
+
+function createGraphCardsCarousel(cardsData) {
+
+    let cards = "";
+
+    for (i = 0; i < cardsData.length; i++) {
+        let title = cardsData[i].name;
+        let totalAmount = cardsData[i].totalAmount;
+        let card = createChart(cardsData.chart_data);
+        //         chartData = (response[i].custom.data)
+        // title = chartData.title;
+        // labels = chartData.labels;
+        // backgroundColor = chartData.backgroundColor;
+        // chartsData = chartData.chartsData;
+        // chartType = chartData.chartType;
+        // displayLegend = chartData.displayLegend;
+        item = `<div class="simple_carousel_cards in-left">
+                <div class="simpleCardHeader"><span class="cardTitle" title="${title}">${title}</span>
+                </div>
+                <p>
+                <span class="simpleCardCounts">Bill counts:<span class="countamount"> ${counts}</span></span>
+                <span class="simpleCardAmount">Total amount: <span class="countamount">${totalAmount}</span></span>
+                </p>
+                </div>`;
+        cards += item;
+    }
+
+    let cardContents = `<div id="paginated_cards" class="cards">
+                         <div class="simple_cards_scroller">${cards}
+                         <span class="arrow prev fa fa-chevron-circle-left "></span> 
+                         <span class="arrow next fa fa-chevron-circle-right" ></span> 
+                         </div> </div>`;
+
+    return cardContents;
+}
+
 //====================================== Quick Replies ==================================================
 
 function showQuickReplies(quickRepliesData) {
