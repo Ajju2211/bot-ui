@@ -144,6 +144,21 @@ setUserResponse("hi");
             }
         }]);
 
+// GraphCardsCarousel
+    setBotResponse([
+        {
+            "custom":{
+                "payload":"graphCardsCarousel",
+                "outlets":[
+                {
+         "title": "Nandha Outlet", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "bar", "displayLegend": "true"              
+                }              
+                
+                ]
+            }
+        }
+
+        ]);
 
 })
 
@@ -395,6 +410,13 @@ function setBotResponse(response) {
                     if (response[i].custom.payload == "simpleCardsCarousel") {
                         let resData = (response[i].custom.data)
                         showSimpleCardsCarousel(resData);
+                        return;
+                    }
+
+                    //check if the custom payload type is "cardsCarousel"
+                    if (response[i].custom.payload == "graphCardsCarousel") {
+                        let resData = (response[i].custom.outlets)
+                        showGraphCardsCarousel(resData);
                         return;
                     }
 
@@ -666,8 +688,8 @@ function createSimpleCardsCarousel(cardsData) {
                 <div class="simpleCardHeader"><span class="cardTitle" title="${title}">${title}</span>
                 </div>
                 <p>
-                <div><i class="fa-money-bill-wave"></i></div>
-                <span class="simpleCardCounts"><i class="fa-money-bill-alt"></i>Bill counts:<span class="countamount">${counts}</span></span>
+                <div><i class="fas fa-money-bill-wave"></i></div>
+                <span class="simpleCardCounts">Bill counts:<span class="countamount">${counts}</span></span>
                 <span class="simpleCardAmount">Total amount:<span class="countamount">₹${totalAmount}</span></span>
                 </p>
                 </div>`;
@@ -687,7 +709,7 @@ function createSimpleCardsCarousel(cardsData) {
 // ===================================== graphCardCarousel =============================================
 
 function showGraphCardsCarousel(cardsToAdd) {
-    var cards = createSimpleCardsCarousel(cardsToAdd);
+    var cards = createGraphCardsCarousel(cardsToAdd);
 
     $(cards).appendTo(".chats").show();
 
@@ -710,7 +732,7 @@ function showGraphCardsCarousel(cardsToAdd) {
     var card_item_size = 225;
 
     card.querySelector(".arrow.next").addEventListener("click", scrollToNextPage);
-    card.querySelector(".arrow.prev").addEventListener("click", scrollToPrevPage);
+    card.querySelectoraddEventListener("click", scrollToPrevPage);
 
 
     // For paginated scrolling, simply scroll the card one item in the given
@@ -730,10 +752,68 @@ function createGraphCardsCarousel(cardsData) {
 
     let cards = "";
 
-    for (i = 0; i < cardsData.length; i++) {
-        let title = cardsData[i].name;
-        let totalAmount = cardsData[i].totalAmount;
-        let card = createChart(cardsData.chart_data);
+    for (let i = 0; i < cardsData.length; i++) {
+        let title = "outlet";
+        
+        
+        // let chart = createChart(cardsData[i].title, cardsData[i].labels, cardsData[i].backgroundColor, cardsData[i].chartsData, cardsData[i].chartType, cardsData[i].displayLegend);
+        let chart;
+        let uniqueID = getCurrentChartIndex() +1 ;
+    let expandID = `expand`;
+    let canvasID = `chat-chart${uniqueID}`;
+    // Add to memory
+    setChartData(uniqueID,cardsData[i]);
+    let html = `<div class="chart-container"> <span class="modal-trigger" data-payload = '${JSON.stringify(chartsData[i])}' id="${expandID}" title="${expandID}" href="#modal1">
+                <i class="fa fa-external-link" aria-hidden="true"></i></span>
+                <canvas id="${canvasID}" ></canvas>
+            </div> <div class="clearfix"></div>`;
+    $(html).appendTo('.graph_carousel_cards');
+
+    //create the context that will draw the charts over the canvas in the ".chart-container" div
+    var ctx = $(`#${canvasID}`);
+
+    // Once you have the element or context, instantiate the chart-type by passing the configuration,
+    //for more info. refer: https://www.chartjs.org/docs/latest/configuration/
+    var data = {
+        labels: labels,
+        datasets: [{
+            label: title,
+            backgroundColor: backgroundColor,
+            data: chartsData,
+            fill: false
+        }]
+    };
+    var options = {
+        title: {
+            display: true,
+            text: title
+        },
+        layout: {
+            padding: {
+                left: 5,
+                right: 0,
+                top: 0,
+                bottom: 0
+            }
+        },
+        legend: {
+            display: displayLegend,
+            position: "right",
+            labels: {
+                boxWidth: 5,
+                fontSize: 10
+            }
+        }
+    }
+
+    //draw the chart by passing the configuration
+    chatChart = new Chart(ctx, {
+        type: chartType,
+        data: data,
+        options: options
+    });
+
+
         //         chartData = (response[i].custom.data)
         // title = chartData.title;
         // labels = chartData.labels;
@@ -741,19 +821,16 @@ function createGraphCardsCarousel(cardsData) {
         // chartsData = chartData.chartsData;
         // chartType = chartData.chartType;
         // displayLegend = chartData.displayLegend;
-        item = `<div class="simple_carousel_cards in-left">
-                <div class="simpleCardHeader"><span class="cardTitle" title="${title}">${title}</span>
+        let item = `<div class="graph_carousel_cards in-left">
+                <div class="graphCardHeader"><span class="cardTitle" >${title}</span>
                 </div>
-                <p>
-                <span class="simpleCardCounts">Bill counts:<span class="countamount"> ${counts}</span></span>
-                <span class="simpleCardAmount">Total amount: <span class="countamount">${totalAmount}</span></span>
-                </p>
+                <div class="">${chart}</div>
                 </div>`;
         cards += item;
     }
 
     let cardContents = `<div id="paginated_cards" class="cards">
-                         <div class="simple_cards_scroller">${cards}
+                         <div class="graph_cards_scroller">${cards}
                          <span class="arrow prev fa fa-chevron-circle-left "></span> 
                          <span class="arrow next fa fa-chevron-circle-right" ></span> 
                          </div> </div>`;
@@ -1003,6 +1080,88 @@ $(document).on("click", ".modal-trigger", function() {
 });    
 
 // for(let i=0;i<=getCurrentChartIndex();i++){
+function createCardChart(title, labels, backgroundColor, chartsData, chartType, displayLegend) {
+
+    //create the ".chart-container" div that will render the charts in canvas as required by charts.js,
+    // for more info. refer: https://www.chartjs.org/docs/latest/getting-started/usage.html
+    // making expand{id} as an unique id and chat-chart{id} ids for canvas
+
+    // creating unique id
+    let uniqueID = getCurrentChartIndex() +1 ;
+    let expandID = `expand`;
+    let canvasID = `chat-chart${uniqueID}`;
+    let chartData = {
+        "title":title,
+        "labels":labels,
+        "backgroundColor":backgroundColor,
+        "chartsData":chartsData,
+        "chartType":chartType,
+        "displayLegend":displayLegend
+    };
+    // Add to memory
+    setChartData(uniqueID,chartData);
+    let html = `<div class="chart-container"> <span class="modal-trigger" data-payload = '${JSON.stringify(chartData)}' id="${expandID}" title="${expandID}" href="#modal1">
+                <i class="fa fa-external-link" aria-hidden="true"></i></span>
+                <canvas id="${canvasID}" ></canvas>
+            </div> <div class="clearfix"></div>`;
+    $(html).appendTo('.chats');
+
+    //create the context that will draw the charts over the canvas in the ".chart-container" div
+    var ctx = $(`#${canvasID}`);
+
+    // Once you have the element or context, instantiate the chart-type by passing the configuration,
+    //for more info. refer: https://www.chartjs.org/docs/latest/configuration/
+    var data = {
+        labels: labels,
+        datasets: [{
+            label: title,
+            backgroundColor: backgroundColor,
+            data: chartsData,
+            fill: false
+        }]
+    };
+    var options = {
+        title: {
+            display: true,
+            text: title
+        },
+        layout: {
+            padding: {
+                left: 5,
+                right: 0,
+                top: 0,
+                bottom: 0
+            }
+        },
+        legend: {
+            display: displayLegend,
+            position: "right",
+            labels: {
+                boxWidth: 5,
+                fontSize: 10
+            }
+        }
+    }
+
+    //draw the chart by passing the configuration
+    chatChart = new Chart(ctx, {
+        type: chartType,
+        data: data,
+        options: options
+    });
+
+    scrollToBottomOfResults();
+}
+
+// on click of expand button, get the chart data from gloabl variable & render it to modal
+
+$(document).on("click", ".modal-trigger", function() {
+    //the parameters are declared gloabally while we get the charts data from rasa.
+    // let data = getChartData(i);
+    let payload = JSON.parse(this.getAttribute('data-payload'));
+    createChartinModal(payload.title, payload.labels, payload.backgroundColor, payload.chartsData,payload.chartType, payload.displayLegend)
+});    
+
 
 
 //function to render the charts in the modal
