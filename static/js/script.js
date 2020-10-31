@@ -77,29 +77,57 @@ setUserResponse("hi");
         "text":"Hi hhhh",
         "image":"https://i.imgur.com/TQ2o0ch.jpeg"
     }]);
-    setBotResponse([{
-        "text":"Hi hhhh",
-        "custom":{
-            "payload":"cardsCarousel",
-            "data":[
-            {
-                "name":"Dosa",
-                "ratings":"4.5",
-                "image":"https://www.cookwithmanali.com/wp-content/uploads/2020/05/Masala-Dosa-500x500.jpg"
-            },
-            {
-                "name":"Dosa",
-                "ratings":"4.5",
-                "image":"https://www.cookwithmanali.com/wp-content/uploads/2020/05/Masala-Dosa-500x500.jpg"
-            },
-            {
-                "name":"Dosa",
-                "ratings":"4.5",
-                "image":"https://sukhis.com/wp-content/uploads/2020/01/Dosa.jpg"
+    // setBotResponse([{
+    //     "text":"Hi hhhh",
+    //     "custom":{
+    //         "payload":"cardsCarousel",
+    //         "data":[
+    //         {
+    //             "name":"Dosa",
+    //             "ratings":"4.5",
+    //             "image":"https://www.cookwithmanali.com/wp-content/uploads/2020/05/Masala-Dosa-500x500.jpg"
+    //         },
+    //         {
+    //             "name":"Dosa",
+    //             "ratings":"4.5",
+    //             "image":"https://www.cookwithmanali.com/wp-content/uploads/2020/05/Masala-Dosa-500x500.jpg"
+    //         },
+    //         {
+    //             "name":"Dosa",
+    //             "ratings":"4.5",
+    //             "image":"https://sukhis.com/wp-content/uploads/2020/01/Dosa.jpg"
+    //         }
+    //         ]
+    //     }
+    // }]);
+// SimpleCardsCarousel
+    setBotResponse([
+        {
+            "custom":{
+                "payload":"simpleCardsCarousel",
+                "data":[{
+                "name":"Shampoo",
+                "totalAmout": 2000.50,
+                "counts": 20
+                },
+                {
+                "name":"Shampoo",
+                "totalAmout": 2000.50,
+                "counts": 20
+                },
+                {
+                "name":"Shampoo",
+                "totalAmout": 2000.50,
+                "counts": 20
+                },
+                {
+                "name":"Shampoo",
+                "totalAmout": 2000.50,
+                "counts": 20
+                }
+                ]
             }
-            ]
-        }
-    }]);
+        }]);
 
 
 })
@@ -348,6 +376,13 @@ function setBotResponse(response) {
                         return;
                     }
 
+                    //check if the custom payload type is "cardsCarousel"
+                    if (response[i].custom.payload == "simpleCardsCarousel") {
+                        let resData = (response[i].custom.data)
+                        showSimpleCardsCarousel(resData);
+                        return;
+                    }
+
                     //check if the custom payload type is "chart"
                     if (response[i].custom.payload == "chart") {
 
@@ -534,23 +569,24 @@ function createCardsCarousel(cardsData) {
 
     for (i = 0; i < cardsData.length; i++) {
         title = cardsData[i].name;
-        ratings = Math.round((cardsData[i].ratings / 5) * 100) + "%";
+        // dummy value
+        ratings = Math.round((4 / 5) * 100) + "%";
         data = cardsData[i];
         // sample format of the charts data:
-                       var chartData = { "title": "Leaves", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "pie", "displayLegend": "true" }
+                       // var chartData = { "title": "Leaves", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "pie", "displayLegend": "true" }
 
                         //store the below parameters as global variable, 
                         // so that it can be used while displaying the charts in modal.
-                     //   chartData = (response[i].custom.data)
-                        title = chartData.title;
-                        labels = chartData.labels;
-                        backgroundColor = chartData.backgroundColor;
-                        chartsData = chartData.chartsData;
-                        chartType = chartData.chartType;
-                        displayLegend = chartData.displayLegend;
+                     //   chartData = (response[i].custom.data) //no need
+                        // title = chartData.title;
+                        // labels = chartData.labels;
+                        // backgroundColor = chartData.backgroundColor;
+                        // chartsData = chartData.chartsData;
+                        // chartType = chartData.chartType;
+                        // displayLegend = chartData.displayLegend;
 
-        //item = '<div class="carousel_cards in-left">' + '<img class="cardBackgroundImage" src="' + cardsData[i].image + '"><div class="cardFooter">' + '<span class="cardTitle" title="' + title + '">' + title + "</span> " + '<div class="cardDescription">' + '<div class="stars-outer">' + '<div class="stars-inner" style="width:' + ratings + '" ></div>' + "</div>" + "</div>" + "</div>" + "</div>";
-        chart=createChart(title, labels, backgroundColor, chartsData, chartType, displayLegend);
+        item = '<div class="carousel_cards in-left">' + '<img class="cardBackgroundImage" src="' + cardsData[i].image + '"><div class="cardFooter">' + '<span class="cardTitle" title="' + title + '">' + title + "</span> " + '<div class="cardDescription">' + '<div class="stars-outer">' + '<div class="stars-inner" style="width:' + ratings + '" ></div>' + "</div>" + "</div>" + "</div>" + "</div>";
+        // chart=createChart(title, labels, backgroundColor, chartsData, chartType, displayLegend);
         item = '<div class="carousel_cards in-left"> <div>'  +chart+ '</div> <div class="cardFooter">' + '<span class="cardTitle" title="' + title + '">' + title + "</span> " + '<div class="cardDescription">' + '<div class="stars-outer">' + '<div class="stars-inner" style="width:' + ratings + '" ></div>' + "</div>" + "</div>" + "</div>" + "</div>";
         cards += item;
     }
@@ -560,6 +596,86 @@ function createCardsCarousel(cardsData) {
     return cardContents;
 }
 
+
+// ===================================== simpleCardCarousel =============================================
+
+function showSimpleCardsCarousel(cardsToAdd) {
+    var cards = createSimpleCardsCarousel(cardsToAdd);
+
+    $(cards).appendTo(".chats").show();
+
+
+    if (cardsToAdd.length <= 2) {
+        $(".simple_cards_scroller>div.simple_carousel_cards:nth-of-type(" + i + ")").fadeIn(3000);
+    } else {
+        for (var i = 0; i < cardsToAdd.length; i++) {
+            $(".simple_cards_scroller>div.simple_carousel_cards:nth-of-type(" + i + ")").fadeIn(3000);
+        }
+        $(".cards .arrow.prev").fadeIn("3000");
+        $(".cards .arrow.next").fadeIn("3000");
+    }
+
+
+    scrollToBottomOfResults();
+
+    const card = document.querySelector("#paginated_simple_cards");
+    const card_scroller = card.querySelector(".simple_cards_scroller");
+    var card_item_size = 225;
+
+    card.querySelector(".arrow.next").addEventListener("click", scrollToNextPage);
+    card.querySelector(".arrow.prev").addEventListener("click", scrollToPrevPage);
+
+
+    // For paginated scrolling, simply scroll the card one item in the given
+    // direction and let css scroll snaping handle the specific alignment.
+    function scrollToNextPage() {
+        card_scroller.scrollBy(card_item_size, 0);
+    }
+
+    function scrollToPrevPage() {
+        card_scroller.scrollBy(-card_item_size, 0);
+    }
+
+}
+
+
+function createSimpleCardsCarousel(cardsData) {
+
+    var cards = "";
+
+    for (i = 0; i < cardsData.length; i++) {
+        title = cardsData[i].name;
+        data = cardsData[i];
+        // sample format of the charts data:
+                       // var chartData = { "title": "Leaves", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "pie", "displayLegend": "true" }
+
+                        //store the below parameters as global variable, 
+                        // so that it can be used while displaying the charts in modal.
+                     //   chartData = (response[i].custom.data) //no need
+                        // title = chartData.title;
+                        // labels = chartData.labels;
+                        // backgroundColor = chartData.backgroundColor;
+                        // chartsData = chartData.chartsData;
+                        // chartType = chartData.chartType;
+                        // displayLegend = chartData.displayLegend;
+
+        // item = '<div class="simple_carousel_cards in-left">' + '<img class="cardBackgroundImage" src="' + cardsData[i].image + '"><div class="cardFooter">' + '<span class="cardTitle" title="' + title + '">' + title + "</span> " + '<div class="cardDescription">' + '<div class="stars-outer">' + '<div class="stars-inner" style="width:' + ratings + '" ></div>' + "</div>" + "</div>" + "</div>" + "</div>";
+        item = `<div class="simple_carousel_cards in-left">
+                <div class="simpleCardHeader"><span class="cardTitle" title="${title}">${title}</span>
+                </div></div>`;
+        // chart=createChart(title, labels, backgroundColor, chartsData, chartType, displayLegend);
+        // item = '<div class="carousel_cards in-left"> <div>'  +chart+ '</div> <div class="cardFooter">' + '<span class="cardTitle" title="' + title + '">' + title + "</span> " + '<div class="cardDescription">' + '<div class="stars-outer">' + '<div class="stars-inner" style="width:' + ratings + '" ></div>' + "</div>" + "</div>" + "</div>" + "</div>";
+        cards += item;
+    }
+
+    var cardContents = `<div id="paginated_cards" class="cards">
+                         <div class="simple_cards_scroller">${cards}
+                         <span class="arrow prev fa fa-chevron-circle-left "></span> 
+                         <span class="arrow next fa fa-chevron-circle-right" ></span> 
+                         </div> </div>`;
+
+    return cardContents;
+}
 //====================================== Quick Replies ==================================================
 
 function showQuickReplies(quickRepliesData) {

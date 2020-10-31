@@ -505,6 +505,84 @@ div.content_data::-webkit-scrollbar {
     border-radius: 10px;
 }
 
+/*
+simple Cards
+*/
+
+.simple_cards_scroller {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: flex;
+    height: 210px;
+    width: 300px;
+    transition: width 0.5s ease;
+    margin-left: 5px;
+    /* Enable Safari touch scrolling physics which is needed for scroll snap */
+    -webkit-overflow-scrolling: touch;
+}
+
+.simple_cards_scroller img {
+    border-radius: 10px;
+}
+
+.simple_cards div.note {
+    position: absolute;
+    /* vertically align center */
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    position: absolute;
+    font-size: 4em;
+    color: white;
+}
+
+.simple_cards .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 30px;
+    width: 30px;
+    border-radius: 2px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.simple_cards .arrow.next {
+    display: none;
+    font-size: 2em;
+    color: #ffffff;
+    right: 10px;
+}
+
+.simple_cards .arrow.prev {
+    display: none;
+    font-size: 2em;
+    color: #ffffff;
+    left: 10px;
+}
+
+.simple_cards_scroller::-webkit-scrollbar {
+    width: 0 !important
+}
+
+.simple_cards_scroller>div.simple_carousel_cards {
+    margin: 5px;
+    scroll-snap-align: center;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+.simple_cards_scroller div.simple_carousel_cards {
+    min-width: 50%;
+    min-height: 70%;
+    background: #b5b5b5;
+    border-radius: 10px;
+}
+
 @-webkit-keyframes fadeInLeft {
     from {
         opacity: 0;
@@ -565,6 +643,21 @@ div.content_data::-webkit-scrollbar {
     padding: 1px;
 }
 
+/*
+For Simple Cards
+*/
+.simpleCardHeader {
+    background: rgba(56, 53, 60, 0.86);
+    border-radius: 0px 0px 5px 5px;
+    position: absolute;
+    z-index: 3;
+    color: white;
+    top: 0;
+    width: 100%;
+    height: 30%;
+    word-wrap: break-word;
+    padding: 1px;
+}
 .cardTitle {
     overflow: hidden;
     white-space: nowrap;
