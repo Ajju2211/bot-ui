@@ -1186,6 +1186,14 @@ function createChartinModal(title, labels, backgroundColor, chartsData, chartTyp
 
 // ========================================loginForm===============================================
 
+
+function login(){
+    let name = $("input[name='email']").val();
+    // let password = md5(($("input[name='password']").val()));
+    // console.log(password);
+
+}
+
 function loginForm(){
 
 
@@ -1198,15 +1206,15 @@ setTimeout(()=>{
         </div>
         <div class="row">
             <div class="col m12 input-field">
-                    <input type="email" class="validate" placeholder="Email">
+                    <input type="email" class="validate" name="email" placeholder="Email">
             </div>
             <div class="input-field col m12">
-                    <input type="password" class="validate" placeholder="Password">
+                    <input type="password" class="validate" name="password" placeholder="Password">
             </div>
         </div>
         <div class="row">
-            <div class="col m12">
-                <button class="btn btn-primary btn-rounded btn-block">Start Chat</button>
+            <div class="col m12 input-field">
+                <input class="btn" id="login" type="submit" value="start chat" onclick="login()">
             </div>
         </div>
            <div class="col m12">
