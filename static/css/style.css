@@ -613,8 +613,9 @@ Elements
 
 
 /*
-Graph Cards
+graphCardCarousel
 */
+
 
 .graph_cards_scroller {
     overflow-x: scroll;
@@ -683,7 +684,7 @@ Graph Cards
     scroll-behavior: smooth;
 }
 
-.graph_cards_scroller div.simple_carousel_cards {
+.graph_cards_scroller div.graph_carousel_cards {
     
     min-height: 70%;
     background: rgb(230, 230, 225);
@@ -691,7 +692,35 @@ Graph Cards
     border-radius: 0px 0px 10px 10px;
 }
 
+
+/*
+Inside graph Card
+Elements
+*/
+
+/*.simpleCardCounts {
+    color:black;
+    top: 40%;
+    margin-left:4%;
+    position: absolute;
+}
+
+.simpleCardAmount {
+    color:black;
+    top: 60%;
+    margin-left:4%;
+    position: absolute;
+}
+.countamount{
+ font-weight: 700;
+ white-space: nowrap;
+ font-family: Georgia,serif;
+}*/
+
+
 /*End Of graph Card*/
+
+
 
 @-webkit-keyframes fadeInLeft {
     from {
@@ -784,12 +813,35 @@ For Simple Cards
     cursor: pointer;
     margin-top:2.5%;
 }
-
+.simpleCardHeader {
+    background: rgba(44, 83, 175);
+    border-radius: 0px 0px 5px 5px;
+    position: absolute;
+    z-index: 3;
+    color: white;
+    top: 0;
+    width: 100%;
+    height: 26%;
+    word-wrap: break-word;
+    padding: 1px;
+}
 .cardDescription {
     padding: 5px;
     font-size: 13px;
     color: white;
     line-height: 15px;
+}
+
+.graphCardHeader {
+    background: rgba(44, 83, 175);
+    border-radius: 0px 0px 5px 5px;
+    z-index: 3;
+    color: white;
+    top: 0;
+    width: 100%;
+    height: 26%;
+    word-wrap: break-word;
+    padding: 1px;
 }
 
 
@@ -869,6 +921,15 @@ For Simple Cards
     top: 10px;
 }
 
+.expand:hover {
+    font-size: 18px;
+}
+
+.expand {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
 .modal {
     height: 60%;
     border-radius: 10px;
