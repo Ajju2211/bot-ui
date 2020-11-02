@@ -1090,8 +1090,44 @@ video:focus {
     border-radius: 10px;
     border-style: none;
 }
+/*
+form control login
+*/
+.bform{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 30px;
+    background-color: rgb(90, 23, 238);
+    color: white;
+    height: 45px;
+    font-size: 1.5em;
+    border:none;
+}
+.bform:hover {
+    background-color: rgba(36, 50, 209,0.8);
+}
+
+.login-btn{
+    width: 100%;
 
 
+
+}
+.sform{
+    width: 80%;
+    margin-left:10%;
+    margin-right: 10%;
+    border: 2px solid rgb(176, 181, 177);
+    border-radius: 30px;
+}
+.mainform{
+    margin:auto 5% auto 5%;
+    position: absolute;
+    top: 25%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
 /* Bot pop-up intro */
 
 .tap-target {

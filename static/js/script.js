@@ -1201,27 +1201,26 @@ function loginForm(){
 
 setTimeout(()=>{
   const html = `
+        <div class="container mainform">
         <div class="row">
             <div class="col m12 center-align m2">
-                <p>Hi 👋! Please fill out the form below to start chatting with the next available agent.</p>
+                <p  style="font-size:1.3em;font-family:Georgia,serif">Hi 👋! Please fill out the form below to start chatting with the next available agent.</p>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col m12 input-field sform">
+                    <input type="email" class="validate" style="border:none;border-bottom:none;outline:none"  name="email" placeholder="Email">
+            </div>
+            <div class="input-field col m12 sform">
+                    <input type="password" class="validate" style="border:none;border-bottom:none;outline:none" name="password" placeholder="Password">
             </div>
         </div>
         <div class="row">
-            <div class="col m12 input-field">
-                    <input type="email" class="validate" name="email" placeholder="Email">
-            </div>
-            <div class="input-field col m12">
-                    <input type="password" class="validate" name="password" placeholder="Password">
+            <div class="col m12 input-field login-btn">
+                <input class="bform" id="login" type="submit" value="Start Chat" onclick="login()">
             </div>
         </div>
-        <div class="row">
-            <div class="col m12 input-field">
-                <input class="btn" id="login" type="submit" value="start chat" onclick="login()">
-            </div>
         </div>
-           <div class="col m12">
-               <div class="powered-by">Powered by css3transition</div>
-           </div>
         </div>`;
         $(".chats").fadeOut("normal", function() {
         $(".chats").html(html);
