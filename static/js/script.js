@@ -742,6 +742,8 @@ function drawCardGraphs(){
         }]
     };
     let options = {
+        responsive: false,
+        maintainAspectRatio: false,
         title: {
             display: true,
             text: cardChartData.title
@@ -813,8 +815,8 @@ function showGraphCardsCarousel(cardsToAdd) {
     }
 
     
-    drawCardGraphs();
     
+ drawCardGraphs();    
 }
 
 // create a chart canvas html with unique Id and saves in card_chat_data
@@ -835,9 +837,9 @@ function makeChartCanvas(data){
         "id": uniqueID,
         "data": chartData
     });
-    let html = `<div class="chart-container"> <span class="modal-trigger" data-payload = '${JSON.stringify(chartData)}' id="${expandID}" title="${expandID}" href="#modal1">
-                <i class="fa fa-external-link" aria-hidden="true"></i></span>
-                <canvas id="${canvasID}" ></canvas>
+    let html = `<div class="chart-container1"> <span class="modal-trigger" data-payload = '${JSON.stringify(chartData)}' id="${expandID}" title="${expandID}" href="#modal1">
+                <i class="fa fa-external-link"  aria-hidden="true"></i></span>
+                <canvas class="type2card" width="322px" id="${canvasID}" ></canvas>
             </div> <div class="clearfix"></div>`;
     return html;
 }

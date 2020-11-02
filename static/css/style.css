@@ -52,8 +52,8 @@ div.chats::-webkit-scrollbar {
 }
 
 .clearfix {
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .botAvatar {
@@ -328,6 +328,14 @@ textarea-webkit-scrollbar {
     font-size: 15px;
 }
 
+.fa-external-link {
+    position:relative;
+    float:right;
+    margin-top: 4px;
+    margin-right: 4px;
+    font-size: 1.5em;
+}
+
 .stars-outer {
     display: inline-block;
     position: relative;
@@ -478,14 +486,14 @@ div.content_data::-webkit-scrollbar {
 .cards .arrow.next {
     display: none;
     font-size: 2em;
-    color: #ffffff;
+    opacity: 0.5;
     right: 10px;
 }
 
 .cards .arrow.prev {
     display: none;
     font-size: 2em;
-    color: #ffffff;
+    opacity: 0.5;
     left: 10px;
 }
 
@@ -621,7 +629,7 @@ graphCardCarousel
     overflow-x: scroll;
     overflow-y: hidden;
     display: flex;
-    height: 210px;
+    height: 255px;
     width: 100%;
     transition: width 0.5s ease;
     
@@ -687,6 +695,7 @@ graphCardCarousel
 .graph_cards_scroller div.graph_carousel_cards {
     
     min-height: 70%;
+    width: 100%;
     background: rgb(230, 230, 225);
     box-shadow: 2px 2px 10px rgb(163, 163, 160);
     border-radius: 0px 0px 10px 10px;
@@ -804,14 +813,14 @@ For Simple Cards
     width: 90%;
     height: 60%;
     display: inline-block;
-    margin-bottom: 1px;
+    margin-bottom: 5%;
     font-size: 16px;
     /* font-weight: 600; */
     padding: 5px;
     /* color: #2c53af; */
     color: #ffffff;
     cursor: pointer;
-    margin-top:2.5%;
+    margin-top:5%;
 }
 .simpleCardHeader {
     background: rgba(44, 83, 175);
@@ -938,6 +947,16 @@ For Simple Cards
 .chart-container {
     position: relative;
     margin-left: 40px;
+    height: auto;
+    border-radius: 10px 10px 10px 10px;
+    background: white;
+    box-shadow: 2px 3px 9px 0px #9a82847a;
+    margin-top: 5px;
+}
+.chart-container1{
+
+ 
+    position: relative;
     height: auto;
     border-radius: 10px 10px 10px 10px;
     background: white;
@@ -1189,9 +1208,14 @@ video:focus {
     }
 }
 
+@media(max-width: 549px){
+    .chart-container1{
+        width: 100%;
+    }
+}
+
 /* media queries
 */
-
 @media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
 @media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
 @media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
