@@ -1173,6 +1173,10 @@ form control login
     .chat_header{
         border-radius: 10px 10px 0px 0px;
     }
+    .mainform {
+        top:12%;
+        margin-left: 14%;
+    }
 }
 @media(max-width: 940px){
     .widget{
