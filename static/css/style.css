@@ -1,6 +1,6 @@
 body {
     font-family: 'Raleway', sans-serif;
-    background: url('../img/body.png') no-repeat center center fixed;
+    background: url('') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -9,20 +9,18 @@ body {
 
 .widget {
     display: none;
-    width: 350px;
-    right: 15px;
-    height: 500px;
+    width: 100%;
+    right: 10px;
     bottom: 5%;
     position: fixed;
     background: #f7f7f7;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.16), 0 0px 10px 0 #00000096;
+    
+    
 }
 
 .chat_header {
     height: 60px;
     background: rgb(90, 23, 238);
-    border-radius: 10px 10px 0px 0px;
     padding: 5px;
     font-size: 20px;
 }
@@ -30,13 +28,14 @@ body {
 .chat_header_title {
     color: white;
     float: left;
-    margin-top: 3%;
-    margin-left: 35%;
+    margin : 1.5% auto auto 3%;
+    font-size: 22px;
 }
 
 .chats {
     /* display: none; */
     height: 385px;
+    width: 100%;
     padding: 2px;
     border-radius: 1px;
     overflow-y: scroll;
@@ -53,14 +52,14 @@ div.chats::-webkit-scrollbar {
 }
 
 .clearfix {
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .botAvatar {
     border-radius: 50%;
-    width: 1.5em;
-    height: 1.5em;
+    width: 2em;
+    height: 2em;
     float: left;
     margin-left: 5px;
     /* border: 2px solid  #2c53af ; */
@@ -69,15 +68,14 @@ div.chats::-webkit-scrollbar {
 .botMsg {
     float: left;
     margin-top: 5px;
-    background: white;
+    background: rgb(203, 205, 209);
     color: black;
     box-shadow: 2px 3px 9px 0px #9a82842e;
-    margin-left: 0.5em;
+    margin-left: 10px;
     padding: 10px;
     border-radius: 1.5em;
     max-width: 60%;
     min-width: 25%;
-    font-size: 13px;
     word-wrap: break-word;
     border-radius: 0 20px 20px 20px;
 }
@@ -109,7 +107,6 @@ textarea-webkit-scrollbar {
     background: #5a17ee;
     color: white;
     margin-bottom: 0.15em;
-    font-size: 13px;
     max-width: 65%;
     min-width: 15%;
     border-radius: 20px 0px 20px 20px;
@@ -120,8 +117,8 @@ textarea-webkit-scrollbar {
     animation: animateElement linear 0.3s;
     animation-iteration-count: 1;
     border-radius: 50%;
-    width: 1.5em;
-    height: 1.5em;
+    width: 2em;
+    height: 2em;
     float: right;
     margin-right: 5px;
     /* border: 2px solid  #2c53af ; */
@@ -145,6 +142,7 @@ textarea-webkit-scrollbar {
     width: 100%;
     padding: 5px;
     border-radius: 0px 0px 10px 10px;
+    margin-top: 1%;
 }
 
 #sendButton {
@@ -191,7 +189,7 @@ textarea-webkit-scrollbar {
     color: white;
     margin-right: 5px;
     float: right;
-    margin-top: 3%;
+    margin-top : 1.6%;
 }
 
 .dropdown-content li>a,
@@ -330,6 +328,14 @@ textarea-webkit-scrollbar {
     font-size: 15px;
 }
 
+.fa-external-link {
+    position:relative;
+    float:right;
+    margin-top: 4px;
+    margin-right: 4px;
+    font-size: 1.5em;
+}
+
 .stars-outer {
     display: inline-block;
     position: relative;
@@ -370,7 +376,7 @@ div.content_data::-webkit-scrollbar {
 /* css for single card */
 
 .singleCard {
-    padding-left: 10%;
+    padding-left: 32px;
     padding-right: 10px;
 }
 
@@ -378,11 +384,11 @@ div.content_data::-webkit-scrollbar {
 /* css for image card */
 
 .imgcard {
-    object-fit: cover;
-    width: 80%;
-    height: 50%;
-    border-radius: 10px;
-    margin-left: 1%;
+    width: 60%;
+    height: auto;
+    border-radius: 5px;
+    margin-left: 10px;
+    background-image: cover;
 }
 
 
@@ -390,10 +396,10 @@ div.content_data::-webkit-scrollbar {
 
 .suggestions {
     padding: 5px;
-    width: 80%;
     border-radius: 10px;
     background: #ffffff;
     box-shadow: 2px 5px 5px 1px #dbdade;
+    margin-left: 5px;
 }
 
 .menuTitle {
@@ -404,6 +410,11 @@ div.content_data::-webkit-scrollbar {
 
 .menu {
     padding: 5px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 33% 33% 33%;
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
 }
 
 .menuChips {
@@ -412,7 +423,7 @@ div.content_data::-webkit-scrollbar {
     color: #fff;
     text-align: center;
     padding: 5px;
-    margin-bottom: 5px;
+  
     cursor: pointer;
     border-radius: 15px;
     font-size: 14px;
@@ -425,7 +436,9 @@ div.content_data::-webkit-scrollbar {
 .cards {
     display: none;
     position: relative;
-    max-width: 300px;
+    width: 96%;
+    margin-right: 2%;
+    margin-left: 2%;
 }
 
 .cards_scroller {
@@ -473,14 +486,14 @@ div.content_data::-webkit-scrollbar {
 .cards .arrow.next {
     display: none;
     font-size: 2em;
-    color: #ffffff;
+    opacity: 0.5;
     right: 10px;
 }
 
 .cards .arrow.prev {
     display: none;
     font-size: 2em;
-    color: #ffffff;
+    opacity: 0.5;
     left: 10px;
 }
 
@@ -501,6 +514,222 @@ div.content_data::-webkit-scrollbar {
     background: #b5b5b5;
     border-radius: 10px;
 }
+
+/*
+simple Cards
+*/
+
+.simple_cards_scroller {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: flex;
+    height: 210px;
+    width: 100%;
+    transition: width 0.5s ease;
+    
+    /* Enable Safari touch scrolling physics which is needed for scroll snap */
+    -webkit-overflow-scrolling: touch;
+}
+
+.simple_cards_scroller img {
+    border-radius: 10px;
+}
+
+.simple_cards div.note {
+    position: absolute;
+    /* vertically align center */
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    position: absolute;
+    font-size: 4em;
+    color: white;
+}
+
+.simple_cards .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 30px;
+    width: 30px;
+    border-radius: 2px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.simple_cards .arrow.next {
+    display: none;
+    font-size: 2em;
+    color: #ffffff;
+    right: 10px;
+}
+
+.simple_cards .arrow.prev {
+    display: none;
+    font-size: 2em;
+    color: #ffffff;
+    left: 10px;
+}
+
+.simple_cards_scroller::-webkit-scrollbar {
+    width: 0 !important
+}
+
+.simple_cards_scroller>div.simple_carousel_cards {
+    margin: 5px;
+    scroll-snap-align: center;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+.simple_cards_scroller div.simple_carousel_cards {
+    
+    min-height: 70%;
+    background: rgb(230, 230, 225);
+    box-shadow: 2px 2px 10px rgb(163, 163, 160);
+    border-radius: 0px 0px 10px 10px;
+}
+
+
+/*
+Inside simple Card
+Elements
+*/
+
+.simpleCardCounts {
+    color:black;
+    top: 40%;
+    margin-left:4%;
+    position: absolute;
+}
+
+.simpleCardAmount {
+    color:black;
+    top: 60%;
+    margin-left:4%;
+    position: absolute;
+}
+.countamount{
+ font-weight: 700;
+ white-space: nowrap;
+ font-family: Georgia,serif;
+}
+
+
+/*
+graphCardCarousel
+*/
+
+
+.graph_cards_scroller {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: flex;
+    height: 255px;
+    width: 100%;
+    transition: width 0.5s ease;
+    
+    /* Enable Safari touch scrolling physics which is needed for scroll snap */
+    -webkit-overflow-scrolling: touch;
+}
+
+.graph_cards_scroller img {
+    border-radius: 10px;
+}
+
+.graph_cards div.note {
+    position: absolute;
+    /* vertically align center */
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    position: absolute;
+    font-size: 4em;
+    color: white;
+}
+
+.graph_cards .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 30px;
+    width: 30px;
+    border-radius: 2px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.graph_cards .arrow.next {
+    display: none;
+    font-size: 2em;
+    color: #ffffff;
+    right: 10px;
+}
+
+.graph_cards .arrow.prev {
+    display: none;
+    font-size: 2em;
+    color: #ffffff;
+    left: 10px;
+}
+
+.graph_cards_scroller::-webkit-scrollbar {
+    width: 0 !important
+}
+
+.graph_cards_scroller>div.graph_carousel_cards {
+    margin: 5px;
+    scroll-snap-align: center;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+.graph_cards_scroller div.graph_carousel_cards {
+    
+    min-height: 70%;
+    width: 100%;
+    background: rgb(230, 230, 225);
+    box-shadow: 2px 2px 10px rgb(163, 163, 160);
+    border-radius: 0px 0px 10px 10px;
+}
+
+
+/*
+Inside graph Card
+Elements
+*/
+
+/*.simpleCardCounts {
+    color:black;
+    top: 40%;
+    margin-left:4%;
+    position: absolute;
+}
+
+.simpleCardAmount {
+    color:black;
+    top: 60%;
+    margin-left:4%;
+    position: absolute;
+}
+.countamount{
+ font-weight: 700;
+ white-space: nowrap;
+ font-family: Georgia,serif;
+}*/
+
+
+/*End Of graph Card*/
+
+
 
 @-webkit-keyframes fadeInLeft {
     from {
@@ -562,27 +791,66 @@ div.content_data::-webkit-scrollbar {
     padding: 1px;
 }
 
+/*
+For Simple Cards
+*/
+.simpleCardHeader {
+    background: rgba(44, 83, 175);
+    border-radius: 0px 0px 5px 5px;
+    position: absolute;
+    z-index: 3;
+    color: white;
+    top: 0;
+    width: 100%;
+    height: 26%;
+    word-wrap: break-word;
+    padding: 1px;
+}
 .cardTitle {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     width: 90%;
-    height: 40%;
+    height: 60%;
     display: inline-block;
-    margin-bottom: 1px;
-    font-size: 15px;
+    margin-bottom: 5%;
+    font-size: 16px;
     /* font-weight: 600; */
     padding: 5px;
     /* color: #2c53af; */
     color: #ffffff;
     cursor: pointer;
+    margin-top:5%;
 }
-
+.simpleCardHeader {
+    background: rgba(44, 83, 175);
+    border-radius: 0px 0px 5px 5px;
+    position: absolute;
+    z-index: 3;
+    color: white;
+    top: 0;
+    width: 100%;
+    height: 26%;
+    word-wrap: break-word;
+    padding: 1px;
+}
 .cardDescription {
     padding: 5px;
     font-size: 13px;
     color: white;
     line-height: 15px;
+}
+
+.graphCardHeader {
+    background: rgba(44, 83, 175);
+    border-radius: 0px 0px 5px 5px;
+    z-index: 3;
+    color: white;
+    top: 0;
+    width: 100%;
+    height: 26%;
+    word-wrap: break-word;
+    padding: 1px;
 }
 
 
@@ -623,6 +891,7 @@ div.content_data::-webkit-scrollbar {
     user-select: none;
     cursor: pointer;
     scroll-behavior: smooth;
+    grid-template-columns: 50%;
 }
 
 .quickReplies::-webkit-scrollbar {
@@ -661,6 +930,15 @@ div.content_data::-webkit-scrollbar {
     top: 10px;
 }
 
+.expand:hover {
+    font-size: 18px;
+}
+
+.expand {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
 .modal {
     height: 60%;
     border-radius: 10px;
@@ -668,11 +946,19 @@ div.content_data::-webkit-scrollbar {
 
 .chart-container {
     position: relative;
-    margin: auto;
-    height: 25vh;
-    width: 20vw;
+    margin-left: 40px;
+    height: auto;
     border-radius: 10px 10px 10px 10px;
-    margin-left: 5%;
+    background: white;
+    box-shadow: 2px 3px 9px 0px #9a82847a;
+    margin-top: 5px;
+}
+.chart-container1{
+
+ 
+    position: relative;
+    height: auto;
+    border-radius: 10px 10px 10px 10px;
     background: white;
     box-shadow: 2px 3px 9px 0px #9a82847a;
     margin-top: 5px;
@@ -718,6 +1004,10 @@ ul.collapsible>li:last-child .collapsible-body {
     padding: 10px;
 }
 
+/*login Form*/
+
+
+/**/
 
 /* css for botTyping */
 
@@ -795,14 +1085,49 @@ video:focus {
     position: absolute;
     top: 0;
     left: 0;
-    width: 90%;
     height: 100%;
-    margin-left: 5%;
+    margin-left: 40px;
     border-radius: 10px;
     border-style: none;
 }
+/*
+form control login
+*/
+.bform{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 30px;
+    background-color: rgb(90, 23, 238);
+    color: white;
+    height: 45px;
+    font-size: 1.5em;
+    border:none;
+}
+.bform:hover {
+    background-color: rgba(36, 50, 209,0.8);
+}
+
+.login-btn{
+    width: 100%;
 
 
+
+}
+.sform{
+    width: 80%;
+    margin-left:10%;
+    margin-right: 10%;
+    border: 2px solid rgb(176, 181, 177);
+    border-radius: 30px;
+}
+.mainform{
+    margin:auto 5% auto 5%;
+    position: absolute;
+    top: 25%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
 /* Bot pop-up intro */
 
 .tap-target {
@@ -838,13 +1163,103 @@ video:focus {
 .pdf_link a {
     color: #5a17ee;
 }
+@media(min-width:950px){
+    .widget{
+        height: 500px;
+        width: 350px;
+        box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.16), 0 0px 10px 0 #00000096;
+        border-radius: 10px 10px 10px 10px;
+    }
+    .chat_header{
+        border-radius: 10px 10px 0px 0px;
+    }
+    .mainform {
+        top:12%;
+        margin-left: 14%;
+    }
+}
+@media(max-width: 940px){
+    .widget{
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0px;
+    }
+    
+    .chats{
+        height: auto;
+        max-height: 85%;
+    }
+    
+}
+/*
+*/
+@media(max-width: 550px){
+    .userMsg .botMsg{
+        font-size:13px;
+    }
 
+.chart-container,
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    width: 85%;
+}
+}
+@media(min-width: 560px){
+    .userMsg .botMsg{
+        font-size:18px;
+    }
+    .chart-container,
+.video-container iframe,
+.video-container object,
+.video-container embed
+ {
+    width:89%;
+}
+}
+@media(min-width: 950px){
 
+    .chart-container,
+.video-container iframe,
+.video-container object,
+.video-container embed
+{
+    width: 85%;
+}
+}
+@media(min-width: 550px){
+    .suggestions{
+        width: 95%;
+    }
+    .simple_cards_scroller div.simple_carousel_cards {
+        min-width: 32%;
+    }
+}
+@media(max-width: 549px){
+    .suggestions{
+        width: 97%;
+    }
+    .simple_cards_scroller div.simple_carousel_cards {
+        min-width: 47%;
+    }
+}
+@media(min-width: 950px){
 
+    .simple_cards_scroller div.simple_carousel_cards {
+        min-width: 47%;
+    }
+}
+
+@media(max-width: 549px){
+    .chart-container1{
+        width: 100%;
+    }
+}
 
 /* media queries
 */
-
 @media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
 @media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
 @media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }

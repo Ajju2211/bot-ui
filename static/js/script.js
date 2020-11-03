@@ -7,7 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-
+// In memory chart data
+// [{id:0,data:{}]
+var charts_data = [];
+var card_chart_data = [];
 //initialization
 $(document).ready(function() {
 
@@ -31,14 +34,147 @@ $(document).ready(function() {
     action_name = "action_greet_user";
     user_id = "userid_unique";
 
+
     //if you want the bot to start the conversation
     // action_trigger();
 
-    setBotResponse([{"text":"welcome to chatbot","image":"https://i.imgur.com/TQ2o0ch.jpeg"},{"custom":{
+setUserResponse("hi");
+    setBotResponse([{"text":"welcome to chatbot","image":"https://i.imgur.com/TQ2o0ch.jpeg"},
+        {"image":"https://images2.minutemediacdn.com/image/upload/c_crop,h_1126,w_2000,x_0,y_181/f_auto,q_auto,w_1100/v1554932288/shape/mentalfloss/12531-istock-637790866.jpg"},
+        {"custom":{
         "payload":"chart",
-        "data":{ "title": "Leaves", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "pie", "displayLegend": "true" }
-    }}]);
+        "data":{ "title": "Leaves", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "bar", "displayLegend": "true" }
+    }
+        }
+    ]);
 
+    setBotResponse([
+        {"custom":{
+        "payload":"chart",
+        "data":{ "title": "Leaves1", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "bar", "displayLegend": "true" }
+    }
+        }
+        ]);
+
+    setBotResponse([
+    {
+        "attachment":{   
+            "type": "video", 
+            "payload": { 
+            "title": "Link name", 
+            "src": "https://www.youtube.com/embed/odQu2QxHoZM" 
+                } 
+            },
+            "buttons":[
+                {
+                    "title":"Subscribe",
+                    "payload":"/subscribe"
+                },
+                {
+                    "title":"Click",
+                    "payload":"/clickednow"
+                }
+            ],
+            "custom":{
+                "payload":"quickReplies",
+                "data":[
+                { "title":"chip1", "payload":"chip1_payload" },
+		  { "title":"chip2", "payload":"chip2_payload" },
+		   { "title":"chip3", "payload":"chip3_payload" } ,
+                           { "title":"chip1", "payload":"chip1_payload" },
+          { "title":"chip2", "payload":"chip2_payload" },
+           { "title":"chip3", "payload":"chip3_payload" } 
+                ]
+            }
+    }
+    ]);
+    setBotResponse([{
+        "text":"Hi hhhh",
+        "image":"https://i.imgur.com/TQ2o0ch.jpeg"
+    }]);
+    // setBotResponse([{
+    //     "text":"Hi hhhh",
+    //     "custom":{
+    //         "payload":"cardsCarousel",
+    //         "data":[
+    //         {
+    //             "name":"Dosa",
+    //             "ratings":"4.5",
+    //             "image":"https://www.cookwithmanali.com/wp-content/uploads/2020/05/Masala-Dosa-500x500.jpg"
+    //         },
+    //         {
+    //             "name":"Dosa",
+    //             "ratings":"4.5",
+    //             "image":"https://www.cookwithmanali.com/wp-content/uploads/2020/05/Masala-Dosa-500x500.jpg"
+    //         },
+    //         {
+    //             "name":"Dosa",
+    //             "ratings":"4.5",
+    //             "image":"https://sukhis.com/wp-content/uploads/2020/01/Dosa.jpg"
+    //         }
+    //         ]
+    //     }
+    // }]);
+// SimpleCardsCarousel
+    // setBotResponse([
+    //     {
+    //         "custom":{
+    //             "payload":"simpleCardsCarousel",
+    //             "data":[{
+    //             "name":"Shampoo",
+    //             "totalAmount": 2000.50,
+    //             "counts": 20
+    //             },
+    //             {
+    //             "name":"Shampoo",
+    //             "totalAmount": 2000.50,
+    //             "counts": 20
+    //             },
+    //             {
+    //             "name":"Shampoo",
+    //             "totalAmount": 2000.50,
+    //             "counts": 20
+    //             },
+    //             {
+    //             "name":"Shampoo",
+    //             "totalAmount": 2000.50,
+    //             "counts": 20
+    //             }
+    //             ]
+    //         }
+    //     }]);
+
+// GraphCardsCarousel
+    setBotResponse([
+        {
+            "text":"Displaying card with Graph",
+            "custom":{
+                "payload":"graphCardsCarousel",
+                "outlets":[
+                {
+         "title": "Nandha Outlet", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "bar", "displayLegend": "true"              
+                },
+                {
+         "title": "Nandha Outlet", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "bar", "displayLegend": "true"              
+                },
+                {
+         "title": "Nandha Outlet", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "bar", "displayLegend": "true"              
+                },
+                {
+         "title": "Nandha Outlet", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "bar", "displayLegend": "true"              
+                } 
+                
+                ]
+            }
+        }
+
+        ]);
+    setBotResponse([
+        {
+            "custom":{
+                "payload":"loginform"
+            }
+        }]);
 
 })
 
@@ -61,8 +197,9 @@ function restartConversation() {
 function action_trigger() {
 
     // send an event to the bot, so that bot can start the conversation by greeting the user
+    // https://frendy-rasa-bot-ilsxqqnpkq-uc.a.run.app/
     $.ajax({
-        url: `http://localhost:5005/conversations/${user_id}/execute`,
+        url: `https://frendy-rasa-bot-ilsxqqnpkq-uc.a.run.app/conversations/${user_id}/execute`,
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({ "name": action_name, "policy": "MappingPolicy", "confidence": "0.98" }),
@@ -161,7 +298,7 @@ function scrollToBottomOfResults() {
 function send(message) {
 
     $.ajax({
-        url: "http://localhost:5005/webhooks/rest/webhook",
+        url: "https://frendy-rasa-bot-ilsxqqnpkq-uc.a.run.app/webhooks/custom_rest/webhook",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({ message: message, sender: user_id }),
@@ -221,17 +358,17 @@ function setBotResponse(response) {
                     $(BotResponse).appendTo(".chats").hide().fadeIn(1000);
                 }
 
+                //check if the response contains "buttons" 
+                if (response[i].hasOwnProperty("buttons")) {
+                    addSuggestion(response[i].buttons);
+                }
                 //check if the response contains "images"
                 if (response[i].hasOwnProperty("image")) {
                     var BotResponse = '<div class="singleCard">' + '<img class="imgcard" src="' + response[i].image + '">' + '</div><div class="clearfix">';
                     $(BotResponse).appendTo(".chats").hide().fadeIn(1000);
                 }
 
-
-                //check if the response contains "buttons" 
-                if (response[i].hasOwnProperty("buttons")) {
-                    addSuggestion(response[i].buttons);
-                }
+     
 
                 //check if the response contains "attachment" 
                 if (response[i].hasOwnProperty("attachment")) {
@@ -247,6 +384,16 @@ function setBotResponse(response) {
                 }
                 //check if the response contains "custom" message  
                 if (response[i].hasOwnProperty("custom")) {
+
+
+
+                    // triggers the login Form and clears the other messages and stops from entering details.
+                    // prevents other messages untill logins.
+                   if (response[i].custom.payload == "loginform") {
+                            loginForm();
+                            break;
+                            return;
+                        }
 
                     //check if the custom payload type is "quickReplies"
                     if (response[i].custom.payload == "quickReplies") {
@@ -281,6 +428,20 @@ function setBotResponse(response) {
                     if (response[i].custom.payload == "cardsCarousel") {
                         restaurantsData = (response[i].custom.data)
                         showCardsCarousel(restaurantsData);
+                        return;
+                    }
+
+                    //check if the custom payload type is "cardsCarousel"
+                    if (response[i].custom.payload == "simpleCardsCarousel") {
+                        let resData = (response[i].custom.data)
+                        showSimpleCardsCarousel(resData);
+                        return;
+                    }
+
+                    //check if the custom payload type is "cardsCarousel"
+                    if (response[i].custom.payload == "graphCardsCarousel") {
+                        let resData = (response[i].custom.outlets)
+                        showGraphCardsCarousel(resData);
                         return;
                     }
 
@@ -375,12 +536,14 @@ function renderDropDwon(data) {
 
 function addSuggestion(textToAdd) {
     setTimeout(function() {
-        var suggestions = textToAdd;
-        var suggLength = textToAdd.length;
-        $(' <div class="singleCard"> <div class="suggestions"><div class="menu"></div></div></diV>').appendTo(".chats").hide().fadeIn(1000);
+        let suggestions = textToAdd;
+        let suggLength = textToAdd.length;
+        // Added clearfix --change
+        $(' <div class="singleCard"> <div class="suggestions"><div class="menu"></div></div></div><div class="clearfix"></div>').appendTo(".chats").hide().fadeIn(1000);
         // Loop through suggestions
         for (i = 0; i < suggLength; i++) {
             $('<div class="menuChips" data-payload=\'' + (suggestions[i].payload) + '\'>' + suggestions[i].title + "</div>").appendTo(".menu");
+
         }
         scrollToBottomOfResults();
     }, 1000);
@@ -468,14 +631,255 @@ function createCardsCarousel(cardsData) {
 
     for (i = 0; i < cardsData.length; i++) {
         title = cardsData[i].name;
-        ratings = Math.round((cardsData[i].ratings / 5) * 100) + "%";
+        // dummy value
+        ratings = Math.round((4 / 5) * 100) + "%";
         data = cardsData[i];
-        item = '<div class="carousel_cards in-left">' + '<img class="cardBackgroundImage" src="' + cardsData[i].image + '"><div class="cardFooter">' + '<span class="cardTitle" title="' + title + '">' + title + "</span> " + '<div class="cardDescription">' + '<div class="stars-outer">' + '<div class="stars-inner" style="width:' + ratings + '" ></div>' + "</div>" + "</div>" + "</div>" + "</div>";
+        // sample format of the charts data:
+                       // var chartData = { "title": "Leaves", "labels": ["Sick Leave", "Casual Leave", "Earned Leave", "Flexi Leave"], "backgroundColor": ["#36a2eb", "#ffcd56", "#ff6384", "#009688", "#c45850"], "chartsData": [5, 10, 22, 3], "chartType": "pie", "displayLegend": "true" }
 
+                        //store the below parameters as global variable, 
+                        // so that it can be used while displaying the charts in modal.
+                     //   chartData = (response[i].custom.data) //no need
+                        // title = chartData.title;
+                        // labels = chartData.labels;
+                        // backgroundColor = chartData.backgroundColor;
+                        // chartsData = chartData.chartsData;
+                        // chartType = chartData.chartType;
+                        // displayLegend = chartData.displayLegend;
+
+        item = '<div class="carousel_cards in-left">' + '<img class="cardBackgroundImage" src="' + cardsData[i].image + '"><div class="cardFooter">' + '<span class="cardTitle" title="' + title + '">' + title + "</span> " + '<div class="cardDescription">' + '<div class="stars-outer">' + '<div class="stars-inner" style="width:' + ratings + '" ></div>' + "</div>" + "</div>" + "</div>" + "</div>";
+        // chart=createChart(title, labels, backgroundColor, chartsData, chartType, displayLegend);
+        item = '<div class="carousel_cards in-left"> <div>'  +chart+ '</div> <div class="cardFooter">' + '<span class="cardTitle" title="' + title + '">' + title + "</span> " + '<div class="cardDescription">' + '<div class="stars-outer">' + '<div class="stars-inner" style="width:' + ratings + '" ></div>' + "</div>" + "</div>" + "</div>" + "</div>";
         cards += item;
     }
 
     var cardContents = '<div id="paginated_cards" class="cards"> <div class="cards_scroller">' + cards + '  <span class="arrow prev fa fa-chevron-circle-left "></span> <span class="arrow next fa fa-chevron-circle-right" ></span> </div> </div>';
+
+    return cardContents;
+}
+
+
+// ===================================== simpleCardCarousel =============================================
+
+function showSimpleCardsCarousel(cardsToAdd) {
+    var cards = createSimpleCardsCarousel(cardsToAdd);
+
+    $(cards).appendTo(".chats").show();
+
+
+    if (cardsToAdd.length <= 2) {
+        $(".simple_cards_scroller>div.simple_carousel_cards:nth-of-type(" + i + ")").fadeIn(3000);
+    } else {
+        for (var i = 0; i < cardsToAdd.length; i++) {
+            $(".simple_cards_scroller>div.simple_carousel_cards:nth-of-type(" + i + ")").fadeIn(3000);
+        }
+        $(".cards .arrow.prev").fadeIn("3000");
+        $(".cards .arrow.next").fadeIn("3000");
+    }
+
+
+    scrollToBottomOfResults();
+
+    const card = document.querySelector("#paginated_cards");
+    const card_scroller = card.querySelector(".simple_cards_scroller");
+    var card_item_size = 225;
+
+    card.querySelector(".arrow.next").addEventListener("click", scrollToNextPage);
+    card.querySelector(".arrow.prev").addEventListener("click", scrollToPrevPage);
+
+
+    // For paginated scrolling, simply scroll the card one item in the given
+    // direction and let css scroll snaping handle the specific alignment.
+    function scrollToNextPage() {
+        card_scroller.scrollBy(card_item_size, 0);
+    }
+
+    function scrollToPrevPage() {
+        card_scroller.scrollBy(-card_item_size, 0);
+    }
+
+}
+
+
+function createSimpleCardsCarousel(cardsData) {
+
+    let cards = "";
+
+    for (i = 0; i < cardsData.length; i++) {
+        let title = cardsData[i].name;
+        let counts = cardsData[i].counts;
+        let totalAmount = cardsData[i].totalAmount;
+        item = `<div class="simple_carousel_cards in-left">
+                <div class="simpleCardHeader"><span class="cardTitle" title="${title}">${title}</span>
+                </div>
+                <p>
+                <div><i class="fas fa-money-bill-wave"></i></div>
+                <span class="simpleCardCounts">Bill counts:<span class="countamount">${counts}</span></span>
+                <span class="simpleCardAmount">Total amount:<span class="countamount">₹${totalAmount}</span></span>
+                </p>
+                </div>`;
+        cards += item;
+    }
+
+    let cardContents = `<div id="paginated_cards" class="cards">
+                         <div class="simple_cards_scroller">${cards}
+                         <span class="arrow prev fa fa-chevron-circle-left "></span> 
+                         <span class="arrow next fa fa-chevron-circle-right" ></span> 
+                         </div> </div>`;
+
+    return cardContents;
+}
+
+
+// ===================================== graphCardCarousel =============================================
+
+// Will Draw graph on the cards appended already to carousels.
+function drawCardGraphs(){
+
+    let expandID = `.expand`;    
+    for(let i=0;i<card_chart_data.length;i++){
+
+    let cardChartData = card_chart_data[i].data;
+    let canvasID = `card-chat-chart${i}`;
+
+    //create the context that will draw the charts over the canvas in the ".chart-container" div
+    let ctx = $(`#${canvasID}`);
+
+    // Once you have the element or context, instantiate the chart-type by passing the configuration,
+    //for more info. refer: https://www.chartjs.org/docs/latest/configuration/
+    let data = {
+        labels: cardChartData.labels,
+        datasets: [{
+            label: cardChartData.title,
+            backgroundColor: cardChartData.backgroundColor,
+            data: cardChartData.chartsData,
+            fill: false
+        }]
+    };
+    let options = {
+        responsive: false,
+        maintainAspectRatio: false,
+        title: {
+            display: true,
+            text: cardChartData.title
+        },
+        layout: {
+            padding: {
+                left: 5,
+                right: 0,
+                top: 0,
+                bottom: 0
+            }
+        },
+        legend: {
+            display: displayLegend,
+            position: "right",
+            labels: {
+                boxWidth: 5,
+                fontSize: 10
+            }
+        }
+    }
+
+    //draw the chart by passing the configuration
+    chatChart = new Chart(ctx, {
+        type: cardChartData.chartType,
+        data: data,
+        options: options
+    });
+
+    }
+    
+}
+
+function showGraphCardsCarousel(cardsToAdd) {
+    var cards = createGraphCardsCarousel(cardsToAdd);
+
+    $(cards).appendTo(".chats").show();
+
+
+    if (cardsToAdd.length <= 2) {
+        $(".graph_cards_scroller>div.graph_carousel_cards:nth-of-type(" + i + ")").fadeIn(3000);
+    } else {
+        for (var i = 0; i < cardsToAdd.length; i++) {
+            $(".graph_cards_scroller>div.graph_carousel_cards:nth-of-type(" + i + ")").fadeIn(3000);
+        }
+        $(".cards .arrow.prev").fadeIn("3000");
+        $(".cards .arrow.next").fadeIn("3000");
+    }
+
+
+    scrollToBottomOfResults();
+
+    const card = document.querySelector("#paginated_cards");
+    const card_scroller = card.querySelector(".graph_cards_scroller");
+    var card_item_size = 225;
+
+    card.querySelector(".arrow.next").addEventListener("click", scrollToNextPage);
+    card.querySelector(".arrow.prev").addEventListener("click", scrollToPrevPage);
+
+
+    // For paginated scrolling, simply scroll the card one item in the given
+    // direction and let css scroll snaping handle the specific alignment.
+    function scrollToNextPage() {
+        card_scroller.scrollBy(card_item_size, 0);
+    }
+
+    function scrollToPrevPage() {
+        card_scroller.scrollBy(-card_item_size, 0);
+    }
+
+    
+    
+ drawCardGraphs();    
+}
+
+// create a chart canvas html with unique Id and saves in card_chat_data
+function makeChartCanvas(data){
+    let uniqueID = card_chart_data.length;
+    let expandID = `.expand`;
+    let canvasID = `card-chat-chart${uniqueID}`;
+    let chartData = {
+        "title":data.title,
+        "labels":data.labels,
+        "backgroundColor":data.backgroundColor,
+        "chartsData":data.chartsData,
+        "chartType":data.chartType,
+        "displayLegend":data.displayLegend
+    };
+    // Add to memory
+    card_chart_data.push({
+        "id": uniqueID,
+        "data": chartData
+    });
+    let html = `<div class="chart-container1"> <span class="modal-trigger" data-payload = '${JSON.stringify(chartData)}' id="${expandID}" title="${expandID}" href="#modal1">
+                <i class="fa fa-external-link"  aria-hidden="true"></i></span>
+                <canvas class="type2card" width="322px" id="${canvasID}" ></canvas>
+            </div> <div class="clearfix"></div>`;
+    return html;
+}
+
+function createGraphCardsCarousel(cardsData) {
+
+    let cards = "";
+
+
+    for (i = 0; i < cardsData.length; i++) {
+        let title = cardsData[i].title;
+        let chartContainer = makeChartCanvas(cardsData[i]);
+        item = `<div class="graph_carousel_cards in-left">
+                <div class="graphCardHeader"><span class="cardTitle" title="${title}">${title}</span>
+                </div>
+                ${chartContainer}
+                </div>`;
+        cards += item;
+    }
+
+    let cardContents = `<div id="paginated_cards" class="cards">
+                         <div class="graph_cards_scroller">${cards}
+                         <span class="arrow prev fa fa-chevron-circle-left "></span> 
+                         <span class="arrow next fa fa-chevron-circle-right" ></span> 
+                         </div> </div>`;
 
     return cardContents;
 }
@@ -620,16 +1024,53 @@ function createCollapsible(data) {
 
 //====================================== creating Charts ======================================
 
+// function to get the current index of charts_data[]
+function getCurrentChartIndex(){
+    return charts_data.length -1;
+}
+
+// function to store the chart_data in the charts_data = []
+function setChartData(id,data){
+    charts_data.push({
+        "id": id,
+        "data": data
+    });
+}
+
+// function to get the charts_data by id , returns whole object
+function getChartData(id){
+    return charts_data.find(ele=> ele.id == id);
+}
+
 //function to create the charts & render it to the canvas
 function createChart(title, labels, backgroundColor, chartsData, chartType, displayLegend) {
 
     //create the ".chart-container" div that will render the charts in canvas as required by charts.js,
     // for more info. refer: https://www.chartjs.org/docs/latest/getting-started/usage.html
-    var html = '<div class="chart-container"> <span class="modal-trigger" id="expand" title="expand" href="#modal1"><i class="fa fa-external-link" aria-hidden="true"></i></span> <canvas id="chat-chart" ></canvas> </div> <div class="clearfix"></div>'
+    // making expand{id} as an unique id and chat-chart{id} ids for canvas
+
+    // creating unique id
+    let uniqueID = getCurrentChartIndex() +1 ;
+    let expandID = `#expand`;
+    let canvasID = `chat-chart${uniqueID}`;
+    let chartData = {
+        "title":title,
+        "labels":labels,
+        "backgroundColor":backgroundColor,
+        "chartsData":chartsData,
+        "chartType":chartType,
+        "displayLegend":displayLegend
+    };
+    // Add to memory
+    setChartData(uniqueID,chartData);
+    let html = `<div class="chart-container"> <span class="modal-trigger" data-payload = '${JSON.stringify(chartData)}' id="${expandID}" title="${expandID}" href="#modal1">
+                <i class="fa fa-external-link" aria-hidden="true"></i></span>
+                <canvas id="${canvasID}" ></canvas>
+            </div> <div class="clearfix"></div>`;
     $(html).appendTo('.chats');
 
     //create the context that will draw the charts over the canvas in the ".chart-container" div
-    var ctx = $('#chat-chart');
+    var ctx = $(`#${canvasID}`);
 
     // Once you have the element or context, instantiate the chart-type by passing the configuration,
     //for more info. refer: https://www.chartjs.org/docs/latest/configuration/
@@ -676,11 +1117,27 @@ function createChart(title, labels, backgroundColor, chartsData, chartType, disp
 }
 
 // on click of expand button, get the chart data from gloabl variable & render it to modal
-$(document).on("click", "#expand", function() {
 
+$(document).on("click", ".modal-trigger", function() {
     //the parameters are declared gloabally while we get the charts data from rasa.
-    createChartinModal(title, labels, backgroundColor, chartsData, chartType, displayLegend)
-});
+    // let data = getChartData(i);
+    let payload = JSON.parse(this.getAttribute('data-payload'));
+    createChartinModal(payload.title, payload.labels, payload.backgroundColor, payload.chartsData,payload.chartType, payload.displayLegend)
+});    
+
+
+
+
+// on click of expand button, get the chart data from gloabl variable & render it to modal
+
+$(document).on("click", ".modal-trigger", function() {
+    //the parameters are declared gloabally while we get the charts data from rasa.
+    // let data = getChartData(i);
+    let payload = JSON.parse(this.getAttribute('data-payload'));
+    createChartinModal(payload.title, payload.labels, payload.backgroundColor, payload.chartsData,payload.chartType, payload.displayLegend)
+});    
+
+
 
 //function to render the charts in the modal
 function createChartinModal(title, labels, backgroundColor, chartsData, chartType, displayLegend) {
@@ -725,4 +1182,52 @@ function createChartinModal(title, labels, backgroundColor, chartsData, chartTyp
         options: options
     });
 
+}
+
+
+
+// ========================================loginForm===============================================
+
+
+function login(){
+    let name = $("input[name='email']").val();
+    // let password = md5(($("input[name='password']").val()));
+    // console.log(password);
+
+}
+
+function loginForm(){
+
+
+setTimeout(()=>{
+  const html = `
+        <div class="container mainform">
+        <div class="row">
+            <div class="col m12 center-align m2">
+                <p  style="font-size:1.3em;font-family:Georgia,serif">Hi 👋! Please fill out the form below to start chatting with the next available agent.</p>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col m12 input-field sform">
+                    <input type="email" class="validate" style="border:none;border-bottom:none;outline:none"  name="email" placeholder="Email">
+            </div>
+            <div class="input-field col m12 sform">
+                    <input type="password" class="validate" style="border:none;border-bottom:none;outline:none" name="password" placeholder="Password">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m12 input-field login-btn">
+                <input class="bform" id="login" type="submit" value="Start Chat" onclick="login()">
+            </div>
+        </div>
+        </div>
+        </div>`;
+        $(".chats").fadeOut("normal", function() {
+        $(".chats").html(html);
+        $(".chats").fadeIn();
+    });
+        // $(".chats").show();
+},1000);
+
+      
 }
