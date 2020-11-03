@@ -298,7 +298,7 @@ function scrollToBottomOfResults() {
 function send(message) {
 
     $.ajax({
-        url: "https://frendy-rasa-bot-ilsxqqnpkq-uc.a.run.app/webhooks/rest/webhook",
+        url: "https://frendy-rasa-bot-ilsxqqnpkq-uc.a.run.app/webhooks/custom_rest/webhook",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({ message: message, sender: user_id }),
