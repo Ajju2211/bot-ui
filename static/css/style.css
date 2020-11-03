@@ -379,6 +379,9 @@ div.content_data::-webkit-scrollbar {
     padding-left: 32px;
     padding-right: 10px;
 }
+.singleCardBtn {
+    margin-top: 84px;
+}
 
 
 /* css for image card */

@@ -539,7 +539,7 @@ function addSuggestion(textToAdd) {
         let suggestions = textToAdd;
         let suggLength = textToAdd.length;
         // Added clearfix --change
-        $(' <div class="singleCard"> <div class="suggestions"><div class="menu"></div></div></div><div class="clearfix"></div>').appendTo(".chats").hide().fadeIn(1000);
+        $(' <div class="singleCard singleCardBtn"> <div class="suggestions"><div class="menu"></div></div></div><div class="clearfix"></div>').appendTo(".chats").hide().fadeIn(1000);
         // Loop through suggestions
         for (i = 0; i < suggLength; i++) {
             $('<div class="menuChips" data-payload=\'' + (suggestions[i].payload) + '\'>' + suggestions[i].title + "</div>").appendTo(".menu");
