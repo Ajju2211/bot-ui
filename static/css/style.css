@@ -411,8 +411,6 @@ div.content_data::-webkit-scrollbar {
 .menu {
     padding: 5px;
     display: grid;
-    width: 100%;
-    grid-template-columns: 33% 33% 33%;
     grid-column-gap: 2px;
     grid-row-gap: 2px;
 }
@@ -1257,7 +1255,20 @@ form control login
         width: 100%;
     }
 }
-
+@media(min-width: 550px){
+    .menu{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+}
+@media(min-width: 950px){
+    .menu{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 100%;
+    }
+}
 /* media queries
 */
 @media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
